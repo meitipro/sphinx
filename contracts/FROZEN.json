@@ -1,0 +1,16 @@
+{
+  "deployments": {
+    "studio-next": {
+      "chain_id": 61997,
+      "deployed_at": "2026-10-09T17:26:22Z",
+      "explorer": "https://explorer-studio-dev.genlayer.com",
+      "rpc": "https://studio-next.genlayer.com/api",
+      "runtime": "py-genlayer:5jycge4q8k23462jtb0b9fyey1s9qz928sz2nbrd9mg4sxqg2qng",
+      "sphinx": "0x864906361b22e044d363083cad710366E8AfECD1",
+      "sphinx_deployer": "0x6b2DC3B417bA9E2ca3c915697A2e840E50C488C5",
+      "sphinx_file": "contracts/sphinx.py",
+      "sphinx_sha256": "a156b3cec2f6c1f2f461aec341caff31e2d2edff0f87f56a5a38e2d70560349d",
+      "sphinx_tx": "0x256c613ad2445bd23ea3c6ba91be3847150cd7b751b2fa669cb24eee00bfbbe8"
+    }
+  }
+}
