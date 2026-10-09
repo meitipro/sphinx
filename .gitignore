@@ -24,3 +24,5 @@ docs/seed.studio-next.json
 # Local tickets written by web/examples/seal-and-reveal.mjs.
 web/ticket-*.json
 npm-ci.log
+build.log
+vercel-deploy.log
