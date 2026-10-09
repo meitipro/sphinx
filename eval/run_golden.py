@@ -205,7 +205,21 @@ def run() -> None:
     report()
 
 
+def kind_of(attempt: dict) -> str:
+    """decided, refused (the contract said no before any label was asked for) or no decision (the round did not agree)."""
+    if attempt.get("ok"):
+        return "decided"
+    return "refused" if "[EXPECTED]" in str(attempt.get("consensus", "")) else "no decision"
+
+
 def judge(key: str, cases: list[dict], results: dict, address: str, judge_chain: C.Chain) -> None:
+    """
+    Send judge until the riddle settles. A refusal is the contract saying no
+    before any model was asked (for example "judging starts when the reveal
+    window ends"): it is recorded, never counted as a judgment, and the call is
+    sent again a minute later. A round that reached no decision is a judgment
+    attempt; a held-out riddle gets exactly one.
+    """
     row = results["riddles"][key]
     held_out = ":" in key
     while True:
@@ -213,8 +227,12 @@ def judge(key: str, cases: list[dict], results: dict, address: str, judge_chain:
         if current["status"] != "OPEN":
             break
         tries = [a for a in results["attempts"] if a["riddle_key"] == key]
-        if held_out and any(not a.get("ok") for a in tries):
+        judged = [a for a in tries if kind_of(a) == "no decision"]
+        if held_out and judged:
             print(f"  {key}: held out, judged once, no decision; left as it came")
+            break
+        if len([a for a in tries if kind_of(a) == "refused"]) >= 12:
+            print(f"  {key}: refused twelve times; stopping so it can be looked at")
             break
         outcome = judge_chain.send(address, "judge", [row["id"]])
         attempt = {
@@ -227,14 +245,17 @@ def judge(key: str, cases: list[dict], results: dict, address: str, judge_chain:
             "returned": outcome.get("result"),
             "sent_at": now_iso(),
         }
+        attempt["kind"] = kind_of(attempt)
         # Saved before anything is printed: a result that exists on chain must
         # never be lost to a failure on this side of the wire.
         results["attempts"].append(attempt)
         save(results)
-        print(f"  {key}: judge {'decided: ' + str(outcome.get('result')) if outcome['ok'] else 'no decision: ' + attempt['consensus'][:120]}")
+        print(f"  {key}: judge {attempt['kind']}: {str(outcome.get('result')) if outcome['ok'] else attempt['consensus'][:120]}")
         print(f"  {C.EXPLORER}/tx/{outcome['hash']}")
-        if not outcome["ok"] and len(tries) + 1 >= 4:
-            print(f"  {key}: four attempts without a decision; stopping here")
+        if attempt["kind"] == "refused":
+            time.sleep(60)
+        elif attempt["kind"] == "no decision" and len(judged) + 1 >= 4:
+            print(f"  {key}: four rounds without a decision; stopping here")
             break
     final = judge_chain.read_json(address, "get_riddle", [row["id"]])
     row["status"] = final["status"]
@@ -297,8 +318,18 @@ def report() -> None:
         spec = golden["riddles"][key.split(":")[0]]
         lines.append(f"- **{key}**, riddle {row['id']}: posted in [{row['tx'][:10]}…]({explorer}/tx/{row['tx']}), host reveal [{row.get('host_reveal_tx', '')[:10]}…]({explorer}/tx/{row.get('host_reveal_tx', '')}). Answer \"{spec['answer']}\", notes \"{spec['notes']}\"")
     lines += ["", "## Every judge transaction", ""]
+    refused = [a for a in results.get("attempts", []) if kind_of(a) == "refused"]
+    if refused:
+        lines += [
+            f"{len(refused)} judge calls were refused by the contract before any label was asked for: the first run of this "
+            "script waited for the first riddle's reveal window only and judged the later riddles a few minutes early. The "
+            "contract said \"judging starts when the reveal window ends\" and stored nothing. They are listed below and are "
+            "not judgment attempts; the held-out riddles were judged once, after their windows ended.",
+            "",
+        ]
     for a in results.get("attempts", []):
-        lines.append(f"- {a['riddle_key']} attempt {a['attempt']}: {'decided, ' + str(a.get('returned')) if a['ok'] else a['consensus'][:160]} ([tx]({explorer}/tx/{a['tx']}))")
+        what = "decided, " + str(a.get("returned")) if a["ok"] else kind_of(a) + ": " + a["consensus"][:160]
+        lines.append(f"- {a['riddle_key']} attempt {a['attempt']}: {what} ([tx]({explorer}/tx/{a['tx']}))")
     lines.append("")
     REPORT.write_text("\n".join(lines), encoding="utf-8", newline="\n")
     print(f"\nwrote {REPORT.relative_to(C.ROOT).as_posix()}: golden {g_hit}/{g_n}, held out {h_hit}/{h_n}")

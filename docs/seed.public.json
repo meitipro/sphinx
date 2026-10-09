@@ -1,0 +1,539 @@
+{
+  "about": "The seed run's record, published from docs/seed.studio-next.json by scripts/publish_seed.py. Salts of answers not yet revealed on chain are withheld.",
+  "network": "studio-next",
+  "contract": "0x864906361b22e044d363083cad710366E8AfECD1",
+  "explorer": "https://explorer-studio-dev.genlayer.com",
+  "accounts": {
+    "seed_host": "0xCbB430fEb1C32C39f31b20239889639d84080380",
+    "seed_host_absent": "0xba257fd16281146D7F3E2472bd6C5c594BC0bd23",
+    "seed_player_1": "0x6ac73313e8c488b1973AFeceA1eABC3685726C15",
+    "seed_player_2": "0x7529d9010A7652f1BbB8c47Bcb8eC0051E42F757",
+    "seed_player_3": "0x4423833D55eA15dc2FB2824c8650b87ccE98752d",
+    "seed_player_4": "0x46c1d2199861f9C08b50cfde646D4B8258ac7737",
+    "seed_player_5": "0xA3A2295489C3B55b4AF441Cde9917eA6f88BA4d4",
+    "seed_player_6": "0x55B7acBb4B5767e08500aBB7b32414aA1EBb43B3",
+    "seed_player_7": "0x6A95a504C6F71C7486Ece3d9d9B74Da5a5007771",
+    "seed_player_8": "0x6491DC3Ea2D551487fC83DeEdaAB410A9cFF6189"
+  },
+  "riddles": {
+    "settled": {
+      "id": 7,
+      "host": "0xCbB430fEb1C32C39f31b20239889639d84080380",
+      "host_salt": "81ea947f-9122-4e05-b3e4-d9553720ee96",
+      "tickets": {
+        "seed_player_1": {
+          "answer": "keyboard",
+          "salt": "b51a6dc1-082e-4b09-b6a5-04790743372a",
+          "revealed": true
+        },
+        "seed_player_2": {
+          "answer": "a piano",
+          "salt": "82320c39-bbf0-4abb-8491-86a12a4ebbac",
+          "revealed": true
+        },
+        "seed_player_3": {
+          "answer": "Tastatur",
+          "salt": "7085e52a-6988-4ae2-abe2-b65a6fb856b9",
+          "revealed": true
+        },
+        "seed_player_4": {
+          "answer": "a map",
+          "salt": "5a14c238-d05f-476a-aaa1-eea4915476eb",
+          "revealed": true
+        },
+        "seed_player_5": {
+          "answer": "keyboard or piano",
+          "salt": "6b592153-822e-4319-af60-69bf33465ebe",
+          "revealed": true
+        },
+        "seed_player_6": {
+          "answer": "a computer keybord",
+          "salt": "6c74e557-1e65-4828-93b4-745c6dce848d",
+          "revealed": true
+        },
+        "seed_player_7": {
+          "copied_from": "seed_player_1",
+          "revealed": false
+        },
+        "seed_player_8": {
+          "answer": "clavier d'ordinateur",
+          "salt": "e080bcb8-e0dd-429f-be11-d57dfa3aaa2c",
+          "revealed": true
+        }
+      }
+    },
+    "void": {
+      "id": 8,
+      "host": "0xba257fd16281146D7F3E2472bd6C5c594BC0bd23",
+      "host_salt": "(withheld: not revealed on chain)",
+      "tickets": {
+        "seed_player_1": {
+          "answer": "a bottle",
+          "salt": "3b78e884-8b0f-4e94-b343-763ee57f409c",
+          "revealed": true
+        },
+        "seed_player_2": {
+          "answer": "a jar",
+          "salt": "2e767e5f-1ce5-49c3-8733-a2ca9027be7f",
+          "revealed": true
+        },
+        "seed_player_3": {
+          "answer": "a wine bottle",
+          "salt": "6db9f0f4-3162-4113-943c-c7db4c4a1318",
+          "revealed": true
+        }
+      }
+    },
+    "open": {
+      "id": 9,
+      "host": "0xCbB430fEb1C32C39f31b20239889639d84080380",
+      "host_salt": "(withheld: not revealed on chain)",
+      "tickets": {
+        "seed_player_1": {
+          "revealed": false
+        },
+        "seed_player_2": {
+          "revealed": false
+        },
+        "seed_player_3": {
+          "revealed": false
+        }
+      }
+    }
+  },
+  "steps": [
+    {
+      "key": "settled:create",
+      "method": "create_riddle",
+      "from": "0xCbB430fEb1C32C39f31b20239889639d84080380",
+      "hash": "0x4fe4fadb2430468ad302d34f684595d3e30bbefd8e8a8312dee41a2552e681c3",
+      "ok": true,
+      "expected": "success",
+      "returned": 7,
+      "refusal": "",
+      "at": "2026-10-09T17:45:31Z"
+    },
+    {
+      "key": "settled:seal:seed_player_1",
+      "method": "commit",
+      "from": "0x6ac73313e8c488b1973AFeceA1eABC3685726C15",
+      "hash": "0xb335c34d0e9271e6719bb92953201078a618d9d4c54eb9cdeab693b2db6d831a",
+      "ok": true,
+      "expected": "success",
+      "returned": 1,
+      "refusal": "",
+      "at": "2026-10-09T17:45:39Z"
+    },
+    {
+      "key": "settled:seal:seed_player_2",
+      "method": "commit",
+      "from": "0x7529d9010A7652f1BbB8c47Bcb8eC0051E42F757",
+      "hash": "0xa8f33612b81b04325c3573ae1b8beb7afa2d23abc8cac868f58ce72cbb6975f8",
+      "ok": true,
+      "expected": "success",
+      "returned": 2,
+      "refusal": "",
+      "at": "2026-10-09T17:45:47Z"
+    },
+    {
+      "key": "settled:seal:seed_player_3",
+      "method": "commit",
+      "from": "0x4423833D55eA15dc2FB2824c8650b87ccE98752d",
+      "hash": "0xdde65598297be5038f9d4276a5eaf3d2e42b8cc30d9ee6cab233af8fab89138f",
+      "ok": true,
+      "expected": "success",
+      "returned": 3,
+      "refusal": "",
+      "at": "2026-10-09T17:45:57Z"
+    },
+    {
+      "key": "settled:seal:seed_player_4",
+      "method": "commit",
+      "from": "0x46c1d2199861f9C08b50cfde646D4B8258ac7737",
+      "hash": "0x8615d07f6b16a54940f6d0510c19d818055e3986347c90837e6e0447b2264bb3",
+      "ok": true,
+      "expected": "success",
+      "returned": 4,
+      "refusal": "",
+      "at": "2026-10-09T17:46:05Z"
+    },
+    {
+      "key": "settled:seal:seed_player_5",
+      "method": "commit",
+      "from": "0xA3A2295489C3B55b4AF441Cde9917eA6f88BA4d4",
+      "hash": "0xbe41a6e4cf90d53c0e9202cd5550f356fbca19d7fdc8661dbd7faed189364846",
+      "ok": true,
+      "expected": "success",
+      "returned": 5,
+      "refusal": "",
+      "at": "2026-10-09T17:46:12Z"
+    },
+    {
+      "key": "settled:seal:seed_player_6",
+      "method": "commit",
+      "from": "0x55B7acBb4B5767e08500aBB7b32414aA1EBb43B3",
+      "hash": "0xc856dd7fde1a2c3a35f45a29147d99522938366e5721992d7e7be3d7bc4a15f7",
+      "ok": true,
+      "expected": "success",
+      "returned": 6,
+      "refusal": "",
+      "at": "2026-10-09T17:46:20Z"
+    },
+    {
+      "key": "settled:seal:seed_player_7",
+      "method": "commit",
+      "from": "0x6A95a504C6F71C7486Ece3d9d9B74Da5a5007771",
+      "hash": "0x69c949e5bc0ae52fcde517d18c61979982d7c80daefb216e8a28eae369e54d3e",
+      "ok": true,
+      "expected": "success",
+      "returned": 7,
+      "refusal": "",
+      "at": "2026-10-09T17:46:28Z"
+    },
+    {
+      "key": "settled:seal:seed_player_8",
+      "method": "commit",
+      "from": "0x6491DC3Ea2D551487fC83DeEdaAB410A9cFF6189",
+      "hash": "0xc53de0b8043b6f28d795e32b7eacb807564327acc416dc21574303660a141295",
+      "ok": true,
+      "expected": "success",
+      "returned": 8,
+      "refusal": "",
+      "at": "2026-10-09T17:46:36Z"
+    },
+    {
+      "key": "void:create",
+      "method": "create_riddle",
+      "from": "0xba257fd16281146D7F3E2472bd6C5c594BC0bd23",
+      "hash": "0xef01761dd4f9acd86c5c3824c0f7b42d293a6ac955a0dfee2d6770bd5aa9e959",
+      "ok": true,
+      "expected": "success",
+      "returned": 8,
+      "refusal": "",
+      "at": "2026-10-09T17:46:44Z"
+    },
+    {
+      "key": "void:seal:seed_player_1",
+      "method": "commit",
+      "from": "0x6ac73313e8c488b1973AFeceA1eABC3685726C15",
+      "hash": "0x07986d723839a5c0150eee66214474a420aa00ea1624cc5c7977383f85b517b7",
+      "ok": true,
+      "expected": "success",
+      "returned": 1,
+      "refusal": "",
+      "at": "2026-10-09T17:46:51Z"
+    },
+    {
+      "key": "void:seal:seed_player_2",
+      "method": "commit",
+      "from": "0x7529d9010A7652f1BbB8c47Bcb8eC0051E42F757",
+      "hash": "0x289e461a8137c54399a4c4c78be2c00694fa6780a250b03ca20bffea6bf9f3ef",
+      "ok": true,
+      "expected": "success",
+      "returned": 2,
+      "refusal": "",
+      "at": "2026-10-09T17:46:59Z"
+    },
+    {
+      "key": "void:seal:seed_player_3",
+      "method": "commit",
+      "from": "0x4423833D55eA15dc2FB2824c8650b87ccE98752d",
+      "hash": "0xccfc2c2afce9bc91ae2e5d22b9d7535169a7e7d63a71371a82b6c08a9328c91a",
+      "ok": true,
+      "expected": "success",
+      "returned": 3,
+      "refusal": "",
+      "at": "2026-10-09T17:47:08Z"
+    },
+    {
+      "key": "open:create",
+      "method": "create_riddle",
+      "from": "0xCbB430fEb1C32C39f31b20239889639d84080380",
+      "hash": "0xc48be3f1c0764ac2da2bc2d7d272af3dbd2bd895e9ea9239e6a9b8be7c26ad75",
+      "ok": true,
+      "expected": "success",
+      "returned": 9,
+      "refusal": "",
+      "at": "2026-10-09T17:47:16Z"
+    },
+    {
+      "key": "open:seal:seed_player_1",
+      "method": "commit",
+      "from": "0x6ac73313e8c488b1973AFeceA1eABC3685726C15",
+      "hash": "0xbba451de3a1f92d4d492b0250ab6f144579544c124027911491e6b347c82ddc3",
+      "ok": true,
+      "expected": "success",
+      "returned": 1,
+      "refusal": "",
+      "at": "2026-10-09T17:47:23Z"
+    },
+    {
+      "key": "open:seal:seed_player_2",
+      "method": "commit",
+      "from": "0x7529d9010A7652f1BbB8c47Bcb8eC0051E42F757",
+      "hash": "0x6724a0b02ba867ee20ab2210a26a6be71549bc73fb30a14c2bed7ac584a7ea53",
+      "ok": true,
+      "expected": "success",
+      "returned": 2,
+      "refusal": "",
+      "at": "2026-10-09T17:47:32Z"
+    },
+    {
+      "key": "open:seal:seed_player_3",
+      "method": "commit",
+      "from": "0x4423833D55eA15dc2FB2824c8650b87ccE98752d",
+      "hash": "0x8900aaa2663b876e9364968adf230a11ef4b4adbe626357a8b62d79d31f1e098",
+      "ok": true,
+      "expected": "success",
+      "returned": 3,
+      "refusal": "",
+      "at": "2026-10-09T17:47:39Z"
+    },
+    {
+      "key": "settled:late-seal",
+      "method": "commit",
+      "from": "0xba257fd16281146D7F3E2472bd6C5c594BC0bd23",
+      "hash": "0x51fde24b3d581f52f1f3ff95991385164a0b3b62e17c2796fe3fee50ae060a53",
+      "ok": false,
+      "expected": "refusal",
+      "returned": null,
+      "refusal": "[EXPECTED] sealing has closed on this riddle",
+      "at": "2026-10-09T18:46:13Z"
+    },
+    {
+      "key": "settled:host-reveal-wrong-salt",
+      "method": "host_reveal",
+      "from": "0xCbB430fEb1C32C39f31b20239889639d84080380",
+      "hash": "0xfcd061687ba5e08ce8c78ea6dad98a883ef11f6deef137f1969d98a000443a6e",
+      "ok": false,
+      "expected": "refusal",
+      "returned": null,
+      "refusal": "[EXPECTED] this answer, notes and salt do not match the lock",
+      "at": "2026-10-09T18:46:21Z"
+    },
+    {
+      "key": "settled:host-reveal",
+      "method": "host_reveal",
+      "from": "0xCbB430fEb1C32C39f31b20239889639d84080380",
+      "hash": "0x72b381490ceb969a48d1b34b08e404bcf580a6910fb2fea9ba12202725ab0555",
+      "ok": true,
+      "expected": "success",
+      "returned": "291cb8bd576b50a8e25128838b52a74241917613c6340bd2cb9b0483b9822abf",
+      "refusal": "",
+      "at": "2026-10-09T18:46:34Z"
+    },
+    {
+      "key": "settled:reveal-wrong-salt:seed_player_1",
+      "method": "reveal",
+      "from": "0x6ac73313e8c488b1973AFeceA1eABC3685726C15",
+      "hash": "0x33321da05e95379a570f13f02351c53bc5e12315bff968b48ae610eb2baa7980",
+      "ok": false,
+      "expected": "refusal",
+      "returned": null,
+      "refusal": "[EXPECTED] this answer and salt do not match your seal",
+      "at": "2026-10-09T18:46:42Z"
+    },
+    {
+      "key": "settled:reveal:seed_player_1",
+      "method": "reveal",
+      "from": "0x6ac73313e8c488b1973AFeceA1eABC3685726C15",
+      "hash": "0x8064389b4edf6274930ba090cff5a4056380044b9baa3513503c0d9e1914f2b9",
+      "ok": true,
+      "expected": "success",
+      "returned": "34b42c2cf05f192ed5fa40ec489a2862bec2279906c2fd9f6ab8243c955b5178",
+      "refusal": "",
+      "at": "2026-10-09T18:46:55Z"
+    },
+    {
+      "key": "settled:reveal:seed_player_2",
+      "method": "reveal",
+      "from": "0x7529d9010A7652f1BbB8c47Bcb8eC0051E42F757",
+      "hash": "0x545504276f4a6d7ec2881e5bb44ae25786e46411a0b49a4fb13ff8947e8b584a",
+      "ok": true,
+      "expected": "success",
+      "returned": "e7c3753ffd8db3e9d5604f63596a487cd39c4c4f9bbb3a69bc19771b4e566df1",
+      "refusal": "",
+      "at": "2026-10-09T18:47:08Z"
+    },
+    {
+      "key": "settled:reveal:seed_player_3",
+      "method": "reveal",
+      "from": "0x4423833D55eA15dc2FB2824c8650b87ccE98752d",
+      "hash": "0xad78099d99f92bc917ffdcb56c2341648d80211bf3eec20016d2c00d42edf7ea",
+      "ok": true,
+      "expected": "success",
+      "returned": "59dab4a2b32e827df1a929bb7a86ad8033bf93d91c1f7008c6cc10d9e52d15cb",
+      "refusal": "",
+      "at": "2026-10-09T18:47:21Z"
+    },
+    {
+      "key": "settled:reveal:seed_player_4",
+      "method": "reveal",
+      "from": "0x46c1d2199861f9C08b50cfde646D4B8258ac7737",
+      "hash": "0x5259310c3f216846417d36c4300486cd42fc96a7c53d8d6e8981c70fbd59eaae",
+      "ok": true,
+      "expected": "success",
+      "returned": "9362a3b42c8ccf0cacec47bd584f0afe09a4704644a7734a03094cdd2cb01929",
+      "refusal": "",
+      "at": "2026-10-09T18:47:29Z"
+    },
+    {
+      "key": "settled:reveal:seed_player_5",
+      "method": "reveal",
+      "from": "0xA3A2295489C3B55b4AF441Cde9917eA6f88BA4d4",
+      "hash": "0xb3ae97c58bed01995b1b3529d8ea75bf758d858e329434f2377fe0462c25b406",
+      "ok": true,
+      "expected": "success",
+      "returned": "463c35ea19fa3f47b37c39fb2882f44dd74c09235c4d5ea0fd293c0f7f84403b",
+      "refusal": "",
+      "at": "2026-10-09T18:47:37Z"
+    },
+    {
+      "key": "settled:reveal:seed_player_6",
+      "method": "reveal",
+      "from": "0x55B7acBb4B5767e08500aBB7b32414aA1EBb43B3",
+      "hash": "0x5a28778f1fe04fe992090ccce49e930e7daa14ee61cbc6d8c2f2637f9f211b0b",
+      "ok": true,
+      "expected": "success",
+      "returned": "8f9b40614ad9f9081957caf44a51f7aab6338a3e76c8ec4e623f9ee3cee08193",
+      "refusal": "",
+      "at": "2026-10-09T18:47:45Z"
+    },
+    {
+      "key": "settled:copied-reveal:seed_player_7",
+      "method": "reveal",
+      "from": "0x6A95a504C6F71C7486Ece3d9d9B74Da5a5007771",
+      "hash": "0x01f0ce97e0aeccdee331a5bcaa04892f5d3e63bbce29175a7e9dd32e7cb4438f",
+      "ok": false,
+      "expected": "refusal",
+      "returned": null,
+      "refusal": "[EXPECTED] this answer and salt do not match your seal",
+      "at": "2026-10-09T18:47:52Z"
+    },
+    {
+      "key": "settled:reveal:seed_player_8",
+      "method": "reveal",
+      "from": "0x6491DC3Ea2D551487fC83DeEdaAB410A9cFF6189",
+      "hash": "0xeb6c4027170557531314e89ea5619d30dd4fbea7506f7fbf2fca74a6c7aa331f",
+      "ok": true,
+      "expected": "success",
+      "returned": "a5b345c73b26c93c01b4155df020dd80210f5fc768014f0915afafa7f64798e8",
+      "refusal": "",
+      "at": "2026-10-09T18:48:00Z"
+    },
+    {
+      "key": "void:reveal:seed_player_1",
+      "method": "reveal",
+      "from": "0x6ac73313e8c488b1973AFeceA1eABC3685726C15",
+      "hash": "0x077e4d2c9a645bb97fc1da2b9facadd5d36b76b09795c789b8dc36056ea77e3c",
+      "ok": true,
+      "expected": "success",
+      "returned": "989f20b17a817dcf46372ec98f08b870a2b7db7577d0aed85b486704eefc1d39",
+      "refusal": "",
+      "at": "2026-10-09T18:48:09Z"
+    },
+    {
+      "key": "void:reveal:seed_player_2",
+      "method": "reveal",
+      "from": "0x7529d9010A7652f1BbB8c47Bcb8eC0051E42F757",
+      "hash": "0x891ccf0ef237fc89eae2dbfba03ae158cbb0c61845d300be54bf7ad37bec50df",
+      "ok": true,
+      "expected": "success",
+      "returned": "8e7139a2dc29ef8c03d23da059c14b9926b0de407700c12acae90538743a3586",
+      "refusal": "",
+      "at": "2026-10-09T18:48:16Z"
+    },
+    {
+      "key": "void:reveal:seed_player_3",
+      "method": "reveal",
+      "from": "0x4423833D55eA15dc2FB2824c8650b87ccE98752d",
+      "hash": "0x7b92feb3a5bb99db4301f4a823a0725dc10ebe4f4e28f7bb06dfa1f6f640c604",
+      "ok": true,
+      "expected": "success",
+      "returned": "23b6d50ca8d0710db226eab670dfa3740edf27349dd9097b74bcbda98b2050b5",
+      "refusal": "",
+      "at": "2026-10-09T18:48:24Z"
+    },
+    {
+      "key": "settled:judge:1",
+      "method": "judge",
+      "from": "0x46c1d2199861f9C08b50cfde646D4B8258ac7737",
+      "hash": "0xb9364d07aeb8d760164cf7c4d008ca2e50d95f5880a1fe61bda6dead879e9eca",
+      "ok": true,
+      "expected": "success",
+      "returned": "batch 1: 7 labelled, 4 correct, settled",
+      "refusal": "",
+      "at": "2026-10-09T19:46:32Z"
+    },
+    {
+      "key": "void:judge-refused",
+      "method": "judge",
+      "from": "0x7529d9010A7652f1BbB8c47Bcb8eC0051E42F757",
+      "hash": "0xaf6808f0eaea11d82ca55cff319bc8d1ce5365c02d82c2d1670f17de7fdd8923",
+      "ok": false,
+      "expected": "refusal",
+      "returned": null,
+      "refusal": "[EXPECTED] the host never revealed the answer, so this riddle can only be voided",
+      "at": "2026-10-09T19:47:31Z"
+    },
+    {
+      "key": "void:void",
+      "method": "void",
+      "from": "0x7529d9010A7652f1BbB8c47Bcb8eC0051E42F757",
+      "hash": "0x18e50133055773792b6014162f63c746a46a8b2d2bf8985ecd02af0b7265dd1e",
+      "ok": true,
+      "expected": "success",
+      "returned": "void",
+      "refusal": "",
+      "at": "2026-10-09T19:47:39Z"
+    },
+    {
+      "key": "claim:seed_player_1",
+      "method": "claim",
+      "from": "0x6ac73313e8c488b1973AFeceA1eABC3685726C15",
+      "hash": "0x44b632a864fffd19c69817cafa420d810d493296621da5475ef414ba917a6edd",
+      "ok": true,
+      "expected": "success",
+      "returned": 23166666666666666668,
+      "refusal": "",
+      "at": "2026-10-09T19:47:48Z"
+    },
+    {
+      "key": "claim:seed_player_3",
+      "method": "claim",
+      "from": "0x4423833D55eA15dc2FB2824c8650b87ccE98752d",
+      "hash": "0x61ddb1149dbcdff4c6be04b09edc014d1a1a74b804abe1d3b60ceb715bc7bb7a",
+      "ok": true,
+      "expected": "success",
+      "returned": 23166666666666666666,
+      "refusal": "",
+      "at": "2026-10-09T19:47:58Z"
+    },
+    {
+      "key": "claim:seed_player_2",
+      "method": "claim",
+      "from": "0x7529d9010A7652f1BbB8c47Bcb8eC0051E42F757",
+      "hash": "0xe1483d923c751197f2c312ccab545a563d314eff5a167e0375f82a2c52b25542",
+      "ok": true,
+      "expected": "success",
+      "returned": 7166666666666666666,
+      "refusal": "",
+      "at": "2026-10-09T19:48:13Z"
+    }
+  ],
+  "settled_summary": {
+    "id": 7,
+    "status": "SETTLED",
+    "entries": 8,
+    "revealed": 7,
+    "correct": 4,
+    "close": 1,
+    "wrong": 2,
+    "unrevealed": 1,
+    "winners": 4,
+    "share": "16000000000000000000",
+    "host_payout": "0",
+    "batches": 1
+  },
+  "finished_at": "2026-10-09T19:48:14Z"
+}
