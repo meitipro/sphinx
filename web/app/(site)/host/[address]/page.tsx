@@ -54,11 +54,11 @@ export default async function HostPage(props: PageProps<'/host/[address]'>) {
         </div>
         <div>
           <dd className="mono">{gen(record?.paid ?? 0n)}</dd>
-          <dt>Prizes paid to winners</dt>
+          <dt>Paid to winners</dt>
         </div>
       </dl>
       <p className="c-faint mt-3 text-[13px]">
-        Revealed on time counts riddles whose sealing has closed. Solved rate counts settled riddles with at least one correct
+        Revealed on time counts riddles the host revealed, and riddles whose reveal window ended without it. Solved rate counts settled riddles with at least one correct
         answer. Every number is read from the contract.
       </p>
       <h2 className="c-h3 mt-10">{plural(mine.length, 'riddle')} hosted</h2>

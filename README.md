@@ -10,7 +10,9 @@ winners from the contract.
   on GenLayer **Studio Next** (chain 61997), deployed in
   [`0x256c613a…`](https://explorer-studio-dev.genlayer.com/tx/0x256c613ad2445bd23ea3c6ba91be3847150cd7b751b2fa669cb24eee00bfbbe8),
   source sha256 `a156b3ce…0349d`, frozen in [`contracts/FROZEN.json`](contracts/FROZEN.json)
-- **Evaluation:** [`eval/results.md`](eval/results.md), golden cases through real consensus, published as they came out
+- **Evaluation:** golden cases **11 of 11**, held-out cases **3 of 3** labelled, through real consensus on the deployed
+  contract and published as they came out: [`eval/results.md`](eval/results.md)
+- **Offline suite:** 218 tests, and 74 of 74 mutants caught ([`docs/MUTATIONS.md`](docs/MUTATIONS.md))
 
 ## How it works
 
@@ -55,6 +57,20 @@ scripts/                    deploy, verify the deployed bytes, mutate every defe
 web/                        Next.js site and Fumadocs docs; writes are signed in the visitor's wallet
 submission/                 portal text, X post, silent demo script, 512 px icon
 ```
+
+## What is on chain
+
+| | |
+|---|---|
+| Golden riddles 1 to 3, held-out riddles 4 to 6 | Every golden case and held-out case, one `judge` per riddle; [`eval/results.md`](eval/results.md) |
+| Riddle 7, settled | Eight seals: "keyboard", "Tastatur", "a computer keybord" and "clavier d'ordinateur" CORRECT, "a piano" CLOSE, "a map" and "keyboard or piano" WRONG, and a copied seal that could not be opened, UNREVEALED. First 5 correct, so four winners at 16 GEN each (64 GEN pot); two have claimed, two are still credited |
+| Riddle 8, void | The host never revealed: `judge` refused, `void` refunded every fee and split the prize among the three players who revealed |
+| Riddle 9, open | Sealing until 2026-10-23 17:47 UTC, so anyone can seal into it |
+| Refusals | A seal after sealing closed, a host reveal with the wrong salt, a player reveal with the wrong salt, a copied seal's reveal, the host sealing their own riddle, a wrong fee, an early host reveal |
+
+Every step and transaction is in [`docs/seed.public.json`](docs/seed.public.json) and
+[`docs/reviewer-path.studio-next.json`](docs/reviewer-path.studio-next.json). Salts of answers not yet revealed on chain are
+withheld from the published record.
 
 ## Run it
 

@@ -28,10 +28,10 @@ export function HostForm() {
   const [previewing, setPreviewing] = useState(false);
   const [mode, setMode] = useState<'FIRST_N' | 'SPLIT_ALL'>('FIRST_N');
   const [winners, setWinners] = useState('5');
-  const [prize, setPrize] = useState('60');
+  const [prize, setPrize] = useState('10');
   const [fee, setFee] = useState('0.5');
-  const [sealHours, setSealHours] = useState('48');
-  const [revealHours, setRevealHours] = useState('24');
+  const [sealHours, setSealHours] = useState('1');
+  const [revealHours, setRevealHours] = useState('1');
   const [maxEntries, setMaxEntries] = useState('200');
   const [salt, setSalt] = useState('');
   const [lock, setLock] = useState('');
@@ -180,7 +180,8 @@ export function HostForm() {
           <Field id="reveal" label="Reveal, hours" value={revealHours} onChange={setRevealHours} />
         </div>
         <p className="c-faint -mt-3 text-[13px]">
-          The pot is the prize plus every entry fee, in equal shares to the winners. If nobody is correct, every fee is refunded
+          One hour is the shortest window; a weekly riddle might seal for 48 hours and reveal for 24. The faucet pays 20 test
+          GEN, so the prize starts at 10. The pot is the prize plus every entry fee, in equal shares to the winners. If nobody is correct, every fee is refunded
           and you get the prize back.
         </p>
 

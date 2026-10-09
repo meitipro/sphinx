@@ -10,10 +10,13 @@ export function hostRecords(riddles: Riddle[], now: number): HostRow[] {
     const key = r.host.toLowerCase();
     const row = rows.get(key) ?? { host: r.host, hosted: 0, onTime: 0, due: 0, solved: 0, settled: 0, paid: 0n };
     row.hosted += 1;
+    // On time once revealed; late only once the reveal window has ended without it.
     const phase = phaseOf(r, now);
-    if (phase !== 'sealing') {
+    if (r.host_revealed) {
       row.due += 1;
-      if (r.host_revealed) row.onTime += 1;
+      row.onTime += 1;
+    } else if (phase === 'voidable' || phase === 'void') {
+      row.due += 1;
     }
     if (r.status === 'SETTLED') {
       row.settled += 1;

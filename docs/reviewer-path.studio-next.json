@@ -1,0 +1,132 @@
+{
+  "runs": {
+    "rp1": {
+      "site": "https://sphinx-genlayer.vercel.app",
+      "contract": "0x864906361b22e044d363083cad710366E8AfECD1",
+      "started_at": "2026-10-09T22:33:40.353Z",
+      "accounts": {
+        "host": "0xdb84CE91d5D9E59cef5eC2B8163ADe03FdC2c49b",
+        "alice": "0xF0913d0df56eEe6Ac6Cd67a5c375B335e96B946b",
+        "bob": "0x862e1605D14510fFb9f0C27D960CF814e2aba839"
+      },
+      "steps": [
+        {
+          "key": "faucet-host",
+          "method": "faucet",
+          "http": 200,
+          "before": "0",
+          "after": "20000000000000000000",
+          "read_after": "20000000000000000000",
+          "error": null,
+          "at": "2026-10-09T22:33:44.510Z"
+        },
+        {
+          "key": "faucet-alice",
+          "method": "faucet",
+          "http": 200,
+          "before": "0",
+          "after": "20000000000000000000",
+          "read_after": "20000000000000000000",
+          "error": null,
+          "at": "2026-10-09T22:33:46.758Z"
+        },
+        {
+          "key": "faucet-bob",
+          "method": "faucet",
+          "http": 200,
+          "before": "0",
+          "after": "20000000000000000000",
+          "read_after": "20000000000000000000",
+          "error": null,
+          "at": "2026-10-09T22:33:50.111Z"
+        },
+        {
+          "key": "create",
+          "method": "create_riddle",
+          "from": "0xdb84CE91d5D9E59cef5eC2B8163ADe03FdC2c49b",
+          "hash": "0xfc6ed6745d62b7ac3d812814c48a6b913129d3df5ed5953f76b7e25042ad3dde",
+          "value": "10000000000000000000",
+          "sent_at": "2026-10-09T22:33:52.670Z",
+          "ok": true,
+          "status": "ACCEPTED",
+          "returned": 10,
+          "refusal": null,
+          "expected": "success",
+          "seconds": 10
+        },
+        {
+          "key": "host-plays",
+          "method": "commit",
+          "from": "0xdb84CE91d5D9E59cef5eC2B8163ADe03FdC2c49b",
+          "hash": "0x6da90de16725e1464dc2e0dec9af61d91b06431610bd6126ab6f8ee71f7a3d83",
+          "value": "500000000000000000",
+          "sent_at": "2026-10-09T22:34:02.430Z",
+          "ok": false,
+          "status": "ACCEPTED",
+          "returned": null,
+          "refusal": "the host knows the answer and cannot play their own riddle",
+          "expected": "refusal",
+          "seconds": 13
+        },
+        {
+          "key": "wrong-fee",
+          "method": "commit",
+          "from": "0xF0913d0df56eEe6Ac6Cd67a5c375B335e96B946b",
+          "hash": "0x4785e743e310020cba226b922e42d0752f5ca576598ca3bcf01904879d485b23",
+          "value": "499999999999999999",
+          "sent_at": "2026-10-09T22:34:14.946Z",
+          "ok": false,
+          "status": "ACCEPTED",
+          "returned": null,
+          "refusal": "send exactly the entry fee, 500000000000000000 wei",
+          "expected": "refusal",
+          "seconds": 12
+        },
+        {
+          "key": "early-host-reveal",
+          "method": "host_reveal",
+          "from": "0xdb84CE91d5D9E59cef5eC2B8163ADe03FdC2c49b",
+          "hash": "0xc66f858bcafd867492df7c038feabe5662dc3509b590c561070da36daa9c13cd",
+          "value": "0",
+          "sent_at": "2026-10-09T22:34:27.299Z",
+          "ok": false,
+          "status": "ACCEPTED",
+          "returned": null,
+          "refusal": "the host reveals after sealing closes, never before",
+          "expected": "refusal",
+          "seconds": 12
+        },
+        {
+          "key": "seal-alice",
+          "method": "commit",
+          "from": "0xF0913d0df56eEe6Ac6Cd67a5c375B335e96B946b",
+          "hash": "0x658ffcfbe23b62426eb0a19aa352b2129fc81f5b828b97d9a2f7fa56e62052c2",
+          "value": "500000000000000000",
+          "sent_at": "2026-10-09T22:34:39.973Z",
+          "ok": true,
+          "status": "ACCEPTED",
+          "returned": 1,
+          "refusal": null,
+          "expected": "success",
+          "seconds": 13
+        },
+        {
+          "key": "seal-bob",
+          "method": "commit",
+          "from": "0x862e1605D14510fFb9f0C27D960CF814e2aba839",
+          "hash": "0x905f79cc37f8cc59502fcfe6b569cd8a377a570a5194da323e7eec423ea8fd2c",
+          "value": "500000000000000000",
+          "sent_at": "2026-10-09T22:34:52.559Z",
+          "ok": true,
+          "status": "ACCEPTED",
+          "returned": 2,
+          "refusal": null,
+          "expected": "success",
+          "seconds": 8
+        }
+      ],
+      "secrets_local": true,
+      "riddle_id": 10
+    }
+  }
+}

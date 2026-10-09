@@ -1,0 +1,17 @@
+  faucet-host: HTTP 200  balance 20 GEN
+  faucet-alice: HTTP 200  balance 20 GEN
+  faucet-bob: HTTP 200  balance 20 GEN
+  create: create_riddle ok -> 10
+    https://explorer-studio-dev.genlayer.com/tx/0xfc6ed6745d62b7ac3d812814c48a6b913129d3df5ed5953f76b7e25042ad3dde
+  host-plays: commit refused: the host knows the answer and cannot play their own riddle
+    https://explorer-studio-dev.genlayer.com/tx/0x6da90de16725e1464dc2e0dec9af61d91b06431610bd6126ab6f8ee71f7a3d83
+  wrong-fee: commit refused: send exactly the entry fee, 500000000000000000 wei
+    https://explorer-studio-dev.genlayer.com/tx/0x4785e743e310020cba226b922e42d0752f5ca576598ca3bcf01904879d485b23
+  early-host-reveal: host_reveal refused: the host reveals after sealing closes, never before
+    https://explorer-studio-dev.genlayer.com/tx/0xc66f858bcafd867492df7c038feabe5662dc3509b590c561070da36daa9c13cd
+  seal-alice: commit ok -> 1
+    https://explorer-studio-dev.genlayer.com/tx/0x658ffcfbe23b62426eb0a19aa352b2129fc81f5b828b97d9a2f7fa56e62052c2
+  seal-bob: commit ok -> 2
+    https://explorer-studio-dev.genlayer.com/tx/0x905f79cc37f8cc59502fcfe6b569cd8a377a570a5194da323e7eec423ea8fd2c
+  waiting 59 min 37 s for sealing to close
+  waiting 54 min 37 s for sealing to close
