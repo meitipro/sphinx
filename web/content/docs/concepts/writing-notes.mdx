@@ -1,0 +1,35 @@
+---
+title: Writing notes on what counts
+description: The notes decide every edge case. How to write them so validators agree and players get the answer they earned.
+---
+
+The prompt tells the validators: *the notes decide edge cases*. The notes are locked with the answer before anyone plays,
+so they are the host's ruling on every near miss, made before seeing a single guess.
+
+## Say it in the words the prompt asks in
+
+The judge labels `CORRECT` (names the same thing), `CLOSE` (right direction, not the same thing, or too broad) and `WRONG`
+(anything else, or more than one guess). Notes that use those words leave validators nothing to guess:
+
+> Any computer keyboard, in any language. A piano is close: keys, but no space or enter. Two guesses in one answer are wrong.
+
+- **Name what counts.** "Any computer keyboard, in any language."
+- **Name the near misses you expect, and call them close.** "A piano is close."
+- **Name what is wrong.** "February is wrong."
+- **Say how numbers may be written.** "Any way of writing 12."
+
+## Keep it about meaning
+
+Spelling, articles, synonyms and other languages are already fine unless the notes say otherwise. Write notes only for
+what the rubric cannot know: which near misses are close, which are wrong, and whether a broader answer counts.
+
+## Try them first
+
+On [Host a riddle](/new), **Try the notes** shows how up to three sample answers would be labelled by one model with the
+contract's prompt. It is a preview only; validators decide on chain. If a sample you think is correct comes back `CLOSE`,
+say so in the notes.
+
+## What notes cannot do
+
+Notes cannot change money: winners, shares, fees and refunds are contract code, and the prompt never mentions them. Notes
+cannot make a second guess count, and an instruction inside a player's answer is ignored.

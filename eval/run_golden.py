@@ -178,11 +178,11 @@ def run() -> None:
             print(f"  case {case['id']} sealed as #{outcome['result']}  {C.EXPLORER}/tx/{outcome['hash']}")
 
     # 2. Reveal, the host and every player, once sealing has closed.
-    first = results["riddles"][next(iter(by_riddle))]["id"]
-    wait_until(host.read_json(address, "get_riddle", [first])["seal_end"], "sealing to close")
     for key, cases in by_riddle.items():
         row = results["riddles"][key]
         spec = golden["riddles"][key.split(":")[0]]
+        # Each riddle's windows run from its own post, so each is waited for on its own.
+        wait_until(host.read_json(address, "get_riddle", [row["id"]])["seal_end"], f"sealing to close on {key}")
         if not row.get("host_reveal_tx"):
             outcome = must(host.send(address, "host_reveal", [row["id"], spec["answer"], spec["notes"], row["host_salt"]]), f"host_reveal {key}")
             row["host_reveal_tx"] = outcome["hash"]
@@ -198,9 +198,9 @@ def run() -> None:
             print(f"  case {case['id']} revealed  {C.EXPLORER}/tx/{outcome['hash']}")
 
     # 3. Judge the golden riddles, then the held-out ones, once the window has ended.
-    wait_until(host.read_json(address, "get_riddle", [first])["reveal_end"], "the reveal window to end")
     order = [k for k in by_riddle if ":" not in k] + [k for k in by_riddle if ":" in k]
     for key in order:
+        wait_until(host.read_json(address, "get_riddle", [results["riddles"][key]["id"]])["reveal_end"], f"the reveal window to end on {key}")
         judge(key, by_riddle[key], results, address, host)
     report()
 

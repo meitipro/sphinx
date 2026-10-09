@@ -1,0 +1,54 @@
+---
+title: FAQ and changelog
+description: Short answers to the questions players and hosts ask, and what changed.
+---
+
+## What counts as correct?
+
+An answer that names the same thing as the host's answer, as the host's notes define it. Spelling mistakes, other
+languages, articles, synonyms and extra words are fine unless the notes say otherwise. See [The four labels](/docs/concepts/the-four-labels).
+
+## Can I change my answer after sealing?
+
+No. One seal per address per riddle, and the reveal must match it.
+
+## What if I lose my ticket?
+
+Load the downloaded file on the [player page](/me) or on the riddle page. Without the salt the seal can't be opened; the
+answer is `UNREVEALED` and cannot win.
+
+## Can someone copy my answer?
+
+Not while sealing is open: only hashes are on chain. After sealing closes, reveals are public, but nobody can seal any more.
+
+## What if the host vanishes?
+
+Once the reveal window ends without the host's reveal, anyone can void the riddle. Every entry fee is refunded and the prize
+is split among the players who revealed.
+
+## What if nobody solves it?
+
+Every entry fee is refunded and the host gets the prize back.
+
+## Who sends judge?
+
+Anyone, including you. It labels the next ten revealed answers in seal order. The call after the last batch settles the pot.
+
+## Why do I have to claim?
+
+`judge` and `void` only credit balances. On this network a payout must be funded at the root of its own transaction, so
+each account claims its balance in one call.
+
+## Which network?
+
+GenLayer Studio Next, chain 61997. Test GEN comes from the site's faucet. See [Addresses and network](/docs/reference/addresses).
+
+## Can a bot use it?
+
+Yes. Every method is plain contract calls; the [Quickstart](/docs/quickstart) has JavaScript and Python samples that run
+against the deployed contract, and [/llms.txt](/llms.txt) lists every docs page for agents.
+
+## Changelog
+
+- **2026-10-09.** Contract deployed to Studio Next and frozen in `contracts/FROZEN.json`. Golden cases locked before the
+  first run and judged through real consensus. Site and docs published.

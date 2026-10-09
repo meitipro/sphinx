@@ -1,0 +1,44 @@
+---
+title: Locks, seals and tickets
+description: How the answer is held before play, why nobody can copy a sealed answer, and what a ticket is.
+---
+
+## The lock
+
+The host's answer and notes are hashed with a random salt in the browser:
+
+```text
+lock = sha256(answer + "|" + notes + "|" + salt)
+```
+
+Only the lock goes on chain with the riddle. Nobody can read the answer from it, and the host cannot change it: the reveal
+is checked by recomputing the hash, and any other answer, notes or salt is refused. The host cannot reveal while sealing is
+open, only in the reveal window after it.
+
+A bar is refused in the answer and in the salt. That keeps one reading of every lock: a host cannot lock answer `piano`
+with notes `keyboard|anything` and later claim the answer was `piano|keyboard`.
+
+## The seal
+
+A player's answer is hashed with their own salt and their address:
+
+```text
+seal = sha256(answer + "|" + salt + "|" + lower_case(address))
+```
+
+While sealing is open, only seals are public. Because the address is inside the hash, copying another player's seal buys
+nothing: the copier's reveal is hashed with the copier's address and never matches. One seal per address per riddle, with
+the exact entry fee.
+
+## The ticket
+
+A ticket is the answer, the notes (for a host) and the salt behind a lock or a seal. The site saves every ticket in your
+browser before the transaction that needs it is signed, and offers it as a JSON download. The [player page](/me) lists
+them and can load a ticket file back.
+
+<Callout type="warn">Lose the ticket and you lose the salt. A sealed answer that is never opened is `UNREVEALED`: it is never judged and cannot win. Its fee goes to the winners, or comes back if nobody is correct.</Callout>
+
+## Same bytes everywhere
+
+The contract hashes with Python's `hashlib`, the browser with SubtleCrypto. Both are tested against the same vectors.
+See [Hashing, with test vectors](/docs/reference/hashing).

@@ -1,0 +1,62 @@
+  0x42E4eED7 0.00 -> 1000.00 GEN
+  0x1535014a 0.00 -> 1000.00 GEN
+  0x755621a2 0.00 -> 1000.00 GEN
+  0xDAEAfA5b 0.00 -> 1000.00 GEN
+  0x6A8cE765 0.00 -> 1000.00 GEN
+  0xEA8c8427 0.00 -> 1000.00 GEN
+  0xeCb57487 0.00 -> 1000.00 GEN
+
+keyboard
+  create_riddle 0xf31d11b6ca73be1a0c6531763de8b57cef18bb548dd70777d9e0c34998e5aa41
+  posted keyboard as riddle 1  https://explorer-studio-dev.genlayer.com/tx/0xf31d11b6ca73be1a0c6531763de8b57cef18bb548dd70777d9e0c34998e5aa41
+  commit 0x38b046780fb2424b060be3cd0195afbb46bed71e9277cda71e24dbcc20289a14
+  case 1 sealed as #1  https://explorer-studio-dev.genlayer.com/tx/0x38b046780fb2424b060be3cd0195afbb46bed71e9277cda71e24dbcc20289a14
+  commit 0xb8b9eafe5810e90ed8b9246db22ab82407f66067f29d1d4ad32fa1a8d61a7c59
+  case 2 sealed as #2  https://explorer-studio-dev.genlayer.com/tx/0xb8b9eafe5810e90ed8b9246db22ab82407f66067f29d1d4ad32fa1a8d61a7c59
+  commit 0x49e966d5a59e4a6f583286d4cd5b522ef74df9066f1fc6a30bc8409db33a1620
+  case 3 sealed as #3  https://explorer-studio-dev.genlayer.com/tx/0x49e966d5a59e4a6f583286d4cd5b522ef74df9066f1fc6a30bc8409db33a1620
+  commit 0xa1412e54d8a3caa0cd82e728c2a285eeab2a09ecbe46e8af6fb19fa1b29d5543
+  case 4 sealed as #4  https://explorer-studio-dev.genlayer.com/tx/0xa1412e54d8a3caa0cd82e728c2a285eeab2a09ecbe46e8af6fb19fa1b29d5543
+  commit 0x787b6cf753d0eb2c6de4f4b5507a1e0322c4ce89beb8af8da7a81a9e4b9741f5
+  case 5 sealed as #5  https://explorer-studio-dev.genlayer.com/tx/0x787b6cf753d0eb2c6de4f4b5507a1e0322c4ce89beb8af8da7a81a9e4b9741f5
+  commit 0x54edcb456a6386a96db26efe403bc1677380d0db025f96faa19dc02008967a51
+  case 6 sealed as #6  https://explorer-studio-dev.genlayer.com/tx/0x54edcb456a6386a96db26efe403bc1677380d0db025f96faa19dc02008967a51
+
+consensus
+  create_riddle 0x8c69b2324bbe154ba3dea8a1687fe51b172537f4d3887ab8a0ca4c93f19a3195
+  posted consensus as riddle 2  https://explorer-studio-dev.genlayer.com/tx/0x8c69b2324bbe154ba3dea8a1687fe51b172537f4d3887ab8a0ca4c93f19a3195
+  commit 0x4bc973239b1a1a87d148cbb53f2e7c7f79c84b54096e1dd7f64ef78b8c6f47ab
+  case 7 sealed as #1  https://explorer-studio-dev.genlayer.com/tx/0x4bc973239b1a1a87d148cbb53f2e7c7f79c84b54096e1dd7f64ef78b8c6f47ab
+  commit 0x536d027f12fcfbcd2b8e26cb1e51c44e2e41605b82d24ee677de3db8ed2b5fb4
+  case 8 sealed as #2  https://explorer-studio-dev.genlayer.com/tx/0x536d027f12fcfbcd2b8e26cb1e51c44e2e41605b82d24ee677de3db8ed2b5fb4
+  commit 0xcc5a60642ed2fff5a9fd406f3fa8c0545a8615c9a9a7754c0095a0dd6c721310
+  case 9 sealed as #3  https://explorer-studio-dev.genlayer.com/tx/0xcc5a60642ed2fff5a9fd406f3fa8c0545a8615c9a9a7754c0095a0dd6c721310
+
+months
+  create_riddle 0x4ef6a56b246a2a3dcab91e21ed3f41030c5f8375eadc863b5ce025c44a7dd207
+  posted months as riddle 3  https://explorer-studio-dev.genlayer.com/tx/0x4ef6a56b246a2a3dcab91e21ed3f41030c5f8375eadc863b5ce025c44a7dd207
+  commit 0xeffcb0a747ebb2f2e742b412a3785ab70241826434ea82cc2e83111cca4a76df
+  case 10 sealed as #1  https://explorer-studio-dev.genlayer.com/tx/0xeffcb0a747ebb2f2e742b412a3785ab70241826434ea82cc2e83111cca4a76df
+  commit 0x3c5d47c6a340fab95e70ec0df0e2165a607d8ef7c25fac962daf900dece0de0a
+  case 11 sealed as #2  https://explorer-studio-dev.genlayer.com/tx/0x3c5d47c6a340fab95e70ec0df0e2165a607d8ef7c25fac962daf900dece0de0a
+
+keyboard:H1
+  create_riddle 0xa7ca04556ef0dfe667c5592a536f00f78bf40db4fa99e687adeb666039179adf
+  posted keyboard:H1 as riddle 4  https://explorer-studio-dev.genlayer.com/tx/0xa7ca04556ef0dfe667c5592a536f00f78bf40db4fa99e687adeb666039179adf
+  commit 0xb13c999112873f704a2e93bbf51b7dbaa46206cff453dc4af87c245df3fafc8f
+  case H1 sealed as #1  https://explorer-studio-dev.genlayer.com/tx/0xb13c999112873f704a2e93bbf51b7dbaa46206cff453dc4af87c245df3fafc8f
+
+consensus:H2
+  create_riddle 0x6c4ab48155a1fbcc9fcb31ab598061684ad6265f1eec309f9598cc8f2dcaed48
+  posted consensus:H2 as riddle 5  https://explorer-studio-dev.genlayer.com/tx/0x6c4ab48155a1fbcc9fcb31ab598061684ad6265f1eec309f9598cc8f2dcaed48
+  commit 0x94337919c7b95b48b77fcde70461dcfbe79c62939e524c5cee5dcc29500b7989
+  case H2 sealed as #1  https://explorer-studio-dev.genlayer.com/tx/0x94337919c7b95b48b77fcde70461dcfbe79c62939e524c5cee5dcc29500b7989
+
+months:H3
+  create_riddle 0x89ab854edce7ed624e53babc82bee5ac8d359913d294de7b548c7504ed750e8a
+  posted months:H3 as riddle 6  https://explorer-studio-dev.genlayer.com/tx/0x89ab854edce7ed624e53babc82bee5ac8d359913d294de7b548c7504ed750e8a
+  commit 0x9ec017babf6285687da6d2c88f4c8a6e749c08ba3cd782372656b82d66d731c5
+  case H3 sealed as #1  https://explorer-studio-dev.genlayer.com/tx/0x9ec017babf6285687da6d2c88f4c8a6e749c08ba3cd782372656b82d66d731c5
+  waiting 56 min 57 s for sealing to close
+  waiting 51 min 57 s for sealing to close
+  waiting 46 min 57 s for sealing to close

@@ -1,0 +1,50 @@
+---
+title: Introduction
+description: Riddles with prizes, judged by meaning. What Sphinx does, who it is for, and where to start.
+---
+
+Sphinx is a riddle and quiz contest on GenLayer. The host locks the answer and the notes on what counts before anyone
+plays, players seal their answers so nobody can copy them, and after the reveal GenLayer validators judge every answer by
+meaning, so typos, synonyms and other languages count. The prize pays the winners from the contract.
+
+## The three things it fixes
+
+Riddle contests and quiz nights break in the same three places.
+
+- **Judging is exact or arbitrary.** A bot compares strings, so `keybord` loses and so does a correct answer in Spanish.
+  A moderator decides by hand, slowly. On Sphinx several validators each judge every answer against the host's answer
+  and notes, and an answer is paid only when they agree it is correct.
+- **Answers are copied.** The first correct reply in a public channel is visible to everyone after it. On Sphinx only a
+  hash goes on chain while sealing is open, and a seal includes the player's address, so a copied seal can never be
+  opened.
+- **Prizes depend on trust.** The host holds the prize and the answer and could change the answer after seeing the
+  replies. On Sphinx the answer is locked by hash before the first seal, a different reveal is refused, and the prize sits
+  in the contract until winners claim it.
+
+## Lock, seal, reveal, judge, claim
+
+<Steps>
+  <Step>**Lock.** The host posts the riddle and a hash of the answer, notes and a salt, with the prize.</Step>
+  <Step>**Seal.** Players seal a hash of their answer, a salt and their address, with the entry fee.</Step>
+  <Step>**Reveal.** After sealing closes, the host and the players open their hashes in one window.</Step>
+  <Step>**Judge.** Anyone sends `judge`: validators label the next ten answers in seal order, CORRECT, CLOSE or WRONG.</Step>
+  <Step>**Claim.** Winners claim their share, or every fee is refunded if nobody solved it.</Step>
+</Steps>
+
+## Where to start
+
+<Cards>
+  <Card title="Quickstart: play your first riddle" href="/docs/quickstart" />
+  <Card title="Host a riddle" href="/docs/host-a-riddle" />
+  <Card title="The four labels" href="/docs/concepts/the-four-labels" />
+  <Card title="Contract reference" href="/docs/reference/contract" />
+</Cards>
+
+## What Sphinx is not
+
+- **Not a trivia database.** Hosts write their own riddles and questions.
+- **Not closed book.** Nobody can see what players look up, so hosts should write riddles, not lookups.
+- **Not a lottery.** Only correct answers are paid; chance plays no part.
+- **Not anonymous.** Answers are public after the reveal, next to the address that sealed them.
+
+Everything here runs on GenLayer Studio Next, chain 61997, with test GEN. See [Addresses and network](/docs/reference/addresses).

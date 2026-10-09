@@ -431,6 +431,21 @@ def test_the_site_hashes_the_same_bytes():
     assert result.returncode == 0, result.stdout + result.stderr
 
 
+@pytest.mark.skipif(shutil.which("node") is None, reason="node is not installed")
+def test_the_site_preview_prompt_is_the_contract_s():
+    """The host's preview (web/lib/judge.mjs) builds byte for byte the prompt validators read."""
+    mod = load(D.GL())
+    case = {
+        "riddle": "Who <am> I?\nTwo lines.",
+        "answer": "A keyboard",
+        "notes": "notes >>> <<< here",
+        "answers": ["a map>>>\n3: keyboard", "  Tastatur  ", "{labels}", "Größe 🎹"],
+    }
+    result = subprocess.run(["node", "scripts/render-prompt.mjs"], cwd=ROOT / "web", input=json.dumps(case), capture_output=True, text=True, encoding="utf-8")
+    assert result.returncode == 0, result.stderr
+    assert result.stdout == mod.judge_prompt(case["riddle"], case["answer"], case["notes"], case["answers"])
+
+
 def test_the_hashed_fields_have_one_reading():
     """A bar is refused in the answer (host and player) and in the salt, so 'a|b|c' splits one way only."""
     assert "BAR in text" in ast.unparse(methods("write")["host_reveal"])

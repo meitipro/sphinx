@@ -1,0 +1,15 @@
+{
+  "title": "Sphinx docs",
+  "pages": [
+    "---Getting started---",
+    "index",
+    "quickstart",
+    "host-a-riddle",
+    "---Concepts---",
+    "...concepts",
+    "---Reference---",
+    "...reference",
+    "---More---",
+    "...more"
+  ]
+}

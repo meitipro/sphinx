@@ -1,0 +1,35 @@
+---
+title: Modes, the pot and refunds
+description: First N and Split all, how the pot is shared, and every way the money comes back.
+---
+
+## The pot
+
+The pot is the prize plus every entry fee, unrevealed seals included. It is shared in equal shares among the winners.
+The indivisible remainder of that division, less than one wei per winner, goes back to the host.
+
+## The two modes
+
+| Mode | Winners |
+|---|---|
+| First N | The first N `CORRECT` answers in **seal order**. Seal order is when each answer was sealed, not when it was revealed or judged. |
+| Split all | Every `CORRECT` answer. |
+
+A `CORRECT` answer past the first N is recorded as correct, with its rank, and is not paid.
+
+## When nobody is correct
+
+Every entry fee comes back to its player, unrevealed ones included, and the host gets the prize back. A host can only ever
+win back their own prize: an unsolvable riddle earns the host nothing.
+
+## When the host never reveals
+
+Once the reveal window ends without the host's reveal, anyone can call `void`. Every entry fee is refunded, and the prize
+is split among the players who revealed (the remainder to the first of them in seal order). If nobody revealed either, the
+prize goes back to the host.
+
+## Credited, then claimed
+
+`judge` and `void` only credit balances; they never move money. Each account then calls `claim` once, a top-level
+transfer of everything credited to it, on every riddle. On consensus v0.6 a transfer can only be funded at the root of the
+transaction that starts it, so payouts live in their own call. The [player page](/me) shows the balance and the button.

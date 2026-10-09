@@ -1,0 +1,174 @@
+---
+title: 'Quickstart: play your first riddle'
+description: Seal an answer to a live riddle, reveal it after sealing closes and claim if you won, in about five minutes of clicks.
+---
+
+<Callout type="warn" title="Keep your ticket">
+  Without its salt a sealed answer cannot be opened, and an unopened answer cannot win. The site saves every ticket in
+  your browser before you sign and offers it as a download. Keep the file.
+</Callout>
+
+## Seal your answer
+
+<Steps>
+  <Step>
+    Open a riddle that is **Sealing** from [Riddles](/riddles). Its page shows the riddle, the prize, the entry fee, the
+    mode, the time left and the host's lock: the hash the answer is held to.
+  </Step>
+  <Step>
+    Write one answer in **Your answer**, in any language. One guess only: an answer that gives two is wrong. At most 80
+    characters, and no bar, `|`.
+  </Step>
+  <Step>
+    Press **Seal answer and pay**. The site walks you through connecting a wallet, switching to Studio Next (chain 61997)
+    and getting free test GEN, then saves your ticket and asks you to sign. Only the hash goes on chain.
+  </Step>
+</Steps>
+
+## Keep the ticket
+
+After sealing, **Download ticket**. It is a small JSON file with your answer and salt. It is also in this browser: the
+[player page](/me) lists every ticket and warns you when one is still sealed while its reveal window is open.
+
+## Reveal after sealing closes
+
+Come back after sealing closes, inside the reveal window the host chose. The riddle page now shows **Reveal my answer**.
+It sends your answer and salt; the contract hashes them with your address and refuses anything that doesn't match your
+seal. If you sealed in another browser, use **Load a ticket file**.
+
+## Judging and claiming
+
+When the reveal window ends, anyone can press **Judge the next ten answers**. Validators label ten answers per call in
+seal order; the call after the last batch settles the pot. The page says *Validators are judging ten answers* with the
+transaction link while it waits.
+
+If your answer is a winner, the page shows **Claim**: one top-level transfer of everything credited to you, on every
+riddle. If nobody was correct, your entry fee is credited back and claimed the same way.
+
+## From code
+
+The same steps with genlayer-js, and a read with genlayer-py. Both run against the deployed contract.
+
+<Tabs items={['JavaScript', 'Python']}>
+<Tab value="JavaScript">
+{/* include: web/examples/seal-and-reveal.mjs */}
+```js title="web/examples/seal-and-reveal.mjs"
+/**
+ * Seal an answer to a riddle, then reveal it after sealing closes, from your
+ * own code, with genlayer-js and a wallet.
+ *
+ *   node examples/seal-and-reveal.mjs seal <riddle id> "<answer>" [account name]
+ *   node examples/seal-and-reveal.mjs reveal <riddle id> [account name]
+ *
+ * In a browser the provider is window.ethereum and the account is the one the
+ * wallet connected. Here a stand-in wallet signs for a local test account, so
+ * the same code runs from a terminal. The ticket (answer and salt) is written
+ * to a local file before the seal is signed: without the salt the answer can
+ * never be opened. This file is the sample on the docs page "Quickstart: play
+ * your first riddle", copied in by scripts/gen_docs.py.
+ */
+import fs from 'node:fs';
+
+import { createClient } from 'genlayer-js';
+import { studioDevnet } from 'genlayer-js/chains';
+
+import { sealOf } from '../lib/hash.mjs';
+import { standinWallet } from '../scripts/standin-wallet.mjs';
+
+const SPHINX = '0x864906361b22e044d363083cad710366E8AfECD1';
+const chain = { ...studioDevnet, id: 61997, rpcUrls: { default: { http: ['https://studio-next.genlayer.com/api'] } } };
+const [step, riddleText, ...rest] = process.argv.slice(2);
+const riddleId = Number(riddleText);
+const name = (step === 'seal' ? rest[1] : rest[0]) ?? 'docs_example';
+
+const { address, provider } = standinWallet(name); // browser: window.ethereum
+const client = createClient({ chain, account: address, provider });
+const ticketFile = `ticket-${riddleId}-${address.toLowerCase()}.json`;
+
+// Studio Next takes a fee deposit on every write, from the SDK's own estimate.
+async function write(functionName, args, value = 0n) {
+  const estimate = await client.estimateTransactionFees({
+    leaderTimeunitsAllocation: 600,
+    validatorTimeunitsAllocation: 600,
+    totalMessageFees: 0,
+    rotations: [1],
+  });
+  const hash = await client.writeContract({
+    address: SPHINX,
+    functionName,
+    args,
+    value,
+    fees: { distribution: estimate.distribution, feeValue: estimate.feeValue },
+  });
+  const receipt = await client.waitForTransactionReceipt({ hash, waitUntil: 'decided', interval: 4000, retries: 60 });
+  const leader = receipt.consensus_data?.leader_receipt?.[0];
+  // ACCEPTED is not success on its own: a refusal is accepted too. Check the result.
+  if (leader?.execution_result !== 'SUCCESS' || leader.result.status !== 'return') {
+    throw new Error(`${functionName} did not return: ${JSON.stringify(leader?.result?.payload ?? receipt.lifecycle)}`);
+  }
+  return { hash, returned: leader.result.payload.readable };
+}
+
+if (step === 'seal') {
+  const riddle = JSON.parse(await client.readContract({ address: SPHINX, functionName: 'get_riddle', args: [riddleId] }));
+  const answer = rest[0].trim();
+  const salt = crypto.randomUUID();
+  const seal = await sealOf(answer, salt, address); // sha256 of "answer|salt|address", the address in lower case
+  fs.writeFileSync(ticketFile, JSON.stringify({ riddleId, answer, salt, seal }, null, 2)); // keep it before signing
+  const sent = await write('commit', [riddleId, seal], BigInt(riddle.entry_fee));
+  console.log(JSON.stringify({ step, riddle: riddleId, seal_number: Number(sent.returned), tx: sent.hash, ticket: ticketFile }));
+} else {
+  const ticket = JSON.parse(fs.readFileSync(ticketFile, 'utf8'));
+  const sent = await write('reveal', [riddleId, ticket.answer, ticket.salt]);
+  console.log(JSON.stringify({ step, riddle: riddleId, revealed: ticket.answer, tx: sent.hash }));
+}
+```
+{/* end include */}
+</Tab>
+<Tab value="Python">
+{/* include: web/examples/read_riddle.py */}
+```python title="web/examples/read_riddle.py"
+"""
+Read a riddle and its answers from Python, with genlayer-py 0.19.0rc2.
+
+    python web/examples/read_riddle.py <riddle id>
+
+genlayer-py reads through an account even for views, so a throwaway one is
+made here; it is never funded and never signs. This file is the Python sample
+on the docs page "Quickstart: play your first riddle", copied in by
+scripts/gen_docs.py.
+"""
+
+import json
+import sys
+
+from genlayer_py import create_account, create_client
+from genlayer_py.chains import studio_devnet
+
+SPHINX = "0x864906361b22e044d363083cad710366E8AfECD1"
+studio_devnet.rpc_urls = {"default": {"http": ["https://studio-next.genlayer.com/api"]}}
+
+reader = create_account()
+client = create_client(chain=studio_devnet, account=reader)
+riddle_id = int(sys.argv[1] if len(sys.argv) > 1 else 1)
+riddle = json.loads(client.read_contract(address=SPHINX, function_name="get_riddle", args=[riddle_id], account=reader))
+if not riddle["found"]:
+    raise SystemExit("no such riddle")
+print(
+    json.dumps(
+        {
+            "riddle": riddle["text"],
+            "status": riddle["status"],
+            "answer": riddle["answer"] or "(locked)",
+            "pot_wei": riddle["pot"],
+            "answers": [[e["number"], e["answer"] or "(sealed)", e["status"]] for e in riddle["entries_list"]],
+        },
+        ensure_ascii=False,
+    )
+)
+```
+{/* end include */}
+</Tab>
+</Tabs>
+
+The hashing is the site's own, `web/lib/hash.mjs`, tested against shared vectors: see [Hashing, with test vectors](/docs/reference/hashing).

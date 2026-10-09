@@ -1,0 +1,58 @@
+---
+title: Host a riddle
+description: Write the riddle and the notes on what counts, try the notes, lock and fund the prize, and reveal after sealing.
+---
+
+## Write it
+
+On [Host a riddle](/new):
+
+- **Riddle, public now.** Up to 600 characters. Everyone can read it from the moment you post. Write a riddle, not a
+  lookup: nobody can see what players search, so trivia is open book.
+- **Answer, locked.** Up to 80 characters, no bar `|`. One thing, named plainly: `A keyboard`.
+- **Notes on what counts, locked.** Up to 600 characters. The notes decide every edge case, because you write them before
+  seeing a single answer. See [Writing notes on what counts](/docs/concepts/writing-notes).
+
+## Try the notes
+
+**Try the notes** sends up to three sample answers to one model with the contract's own prompt, and shows the label each
+would get. It is a preview only: not binding, not stored, and not the validators. On chain several validators label every
+answer and must agree.
+
+<Callout>Previews need a model key on the site's server. When the deployment has none, the button says so; everything else works without it.</Callout>
+
+## Choose the mode, the money and the windows
+
+| Field | Allowed | What it does |
+|---|---|---|
+| Mode | First N or Split all | First N pays the first N correct answers in seal order; Split all pays every correct answer. Always equal shares. |
+| N | 1 to the maximum entries | First N only. |
+| Prize | above 0 GEN | Sent with the post. Comes back to you if nobody is correct. |
+| Entry fee | above 0 GEN | Paid by each player when they seal. |
+| Sealing | 1 to 336 hours | How long players can seal. |
+| Reveal | 1 to 168 hours | The window after sealing for you and the players to reveal. |
+| Maximum entries | 1 to 200 | One seal per address. |
+
+The pot is the prize plus every entry fee. See [Modes, the pot and refunds](/docs/concepts/modes-and-refunds).
+
+## Lock and fund
+
+**Lock the answer and fund** saves your host ticket in this browser, then asks you to sign `create_riddle` with the prize
+as its value. The ticket holds the answer, the notes and a random salt; the lock is
+`sha256("answer|notes|salt")`. **Download ticket** before you leave: you need it to reveal.
+
+<Callout type="warn" title="A host who never reveals loses the prize">
+  If the reveal window ends without your reveal, anyone can void the riddle: every entry fee is refunded and the prize is
+  split among the players who revealed.
+</Callout>
+
+## Reveal
+
+After sealing closes, open your riddle's page. **Reveal the answer and notes** sends them with the salt; the contract
+recomputes the lock and refuses anything that differs by a single byte. Then players reveal, and once the window ends
+anyone can judge.
+
+## Share one link
+
+Every riddle has one page, `/r/<id>`, with the riddle, the seal or reveal box for its phase, and afterwards the answer,
+the notes and every labelled answer. **Copy link** at the top of the page.

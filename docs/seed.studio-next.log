@@ -1,0 +1,23 @@
+  0xCbB430fE 0.00 -> 1000.00 GEN
+  0xba257fd1 0.00 -> 1000.00 GEN
+  0x6ac73313 0.00 -> 1000.00 GEN
+  0x7529d901 0.00 -> 1000.00 GEN
+  0x4423833D 0.00 -> 1000.00 GEN
+  0x46c1d219 0.00 -> 1000.00 GEN
+  0xA3A22954 0.00 -> 1000.00 GEN
+  0x55B7acBb 0.00 -> 1000.00 GEN
+  0x6A95a504 0.00 -> 1000.00 GEN
+  0x6491DC3E 0.00 -> 1000.00 GEN
+  create_riddle 0x4fe4fadb2430468ad302d34f684595d3e30bbefd8e8a8312dee41a2552e681c3
+  settled:create: create_riddle ok -> 7
+    https://explorer-studio-dev.genlayer.com/tx/0x4fe4fadb2430468ad302d34f684595d3e30bbefd8e8a8312dee41a2552e681c3
+  commit 0xb335c34d0e9271e6719bb92953201078a618d9d4c54eb9cdeab693b2db6d831a
+  settled:seal:seed_player_1: commit ok -> 1
+    https://explorer-studio-dev.genlayer.com/tx/0xb335c34d0e9271e6719bb92953201078a618d9d4c54eb9cdeab693b2db6d831a
+  commit 0xa8f33612b81b04325c3573ae1b8beb7afa2d23abc8cac868f58ce72cbb6975f8
+  settled:seal:seed_player_2: commit ok -> 2
+    https://explorer-studio-dev.genlayer.com/tx/0xa8f33612b81b04325c3573ae1b8beb7afa2d23abc8cac868f58ce72cbb6975f8
+  commit 0xdde65598297be5038f9d4276a5eaf3d2e42b8cc30d9ee6cab233af8fab89138f
+  settled:seal:seed_player_3: commit ok -> 3
+    https://explorer-studio-dev.genlayer.com/tx/0xdde65598297be5038f9d4276a5eaf3d2e42b8cc30d9ee6cab233af8fab89138f
+  commit 0x8615d07f6b16a54940f6d0510c19d818055e3986347c90837e6e0447b2264bb3

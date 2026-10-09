@@ -1,0 +1,46 @@
+---
+title: Limitations
+description: What Sphinx does not do, and what it cannot know.
+---
+
+Sphinx judges whether an answer means the same as the host's, as the notes define it. It does not judge whether the riddle
+is fair, and some things are out of its reach on purpose.
+
+## Wallets are not people
+
+One seal per address, and each address pays the entry fee. A solver with several wallets can seal the right answer from
+each of them. Fees and small First N sizes keep that in proportion; one seal per verified person with GenLayer Identity is a
+stretch goal, not built.
+
+## A host can tell a friend
+
+Nothing stops a host from sharing the answer with someone before the riddle closes. The host's record page shows every
+riddle they hosted and who won, which is the only defence.
+
+## Trivia is open book
+
+Nobody can see what players look up. Hosts should write riddles, not lookups.
+
+## Answers are public after the reveal
+
+Every answer is shown next to the address that sealed it, once revealed. Sphinx is not anonymous.
+
+## Near misses are the leader's
+
+Validators agree on which answers are `CORRECT`. Whether a wrong answer is shown as `CLOSE` or `WRONG` is the leader's
+label, stored for display. Both pay the same, nothing.
+
+## The shortest windows are one hour
+
+Sealing and reveal each last at least one hour, so a riddle takes at least two hours from post to judging. To try the whole
+loop yourself, host a riddle with one-hour windows and seal from a second wallet.
+
+## Model judgments can differ
+
+A batch where the validators' models disagree on which answers are correct stores nothing; anyone can send `judge` again.
+The golden cases on [Evaluation results](/docs/more/evaluation) show how the judge behaved on chain, misses included.
+
+## Test network
+
+Everything runs on GenLayer Studio Next with test GEN. Previews of the notes need a model key on the site's server and are
+off when none is set.
