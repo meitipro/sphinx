@@ -1,0 +1,95 @@
+"""
+The mutants scripts/mutate.py runs: one defence of contracts/sphinx.py broken each.
+
+(what the mutant does, text in the contract, what replaces it). Each text must
+occur exactly once, so a mutant always changes exactly one place.
+"""
+
+MUTANTS = [
+    # who may write
+    ("host_reveal: anyone reveals the answer", "        if rd.host != gl.message.sender_address:\n", "        if False:\n"),
+    ("host_reveal: addresses compared as text", "if rd.host != gl.message.sender_address:", "if rd.host.as_hex != gl.message.sender_address.as_hex.lower():"),
+    ("commit: the host plays their own riddle", "        if rd.host == me:\n", "        if False:\n"),
+    ("create: the riddle is recorded as nobody's", "host=gl.message.sender_address,", "host=ZERO,"),
+    ("commit: the player is not recorded", "            player=me,\n", "            player=ZERO,\n"),
+    ("judge: the caller is not recorded", "            e.judged_by = gl.message.sender_address\n", ""),
+    ("void: the caller is not recorded", "        rd.settled_by = gl.message.sender_address\n", ""),
+    ("claim: pays a fixed address", "_Payee(me).emit_transfer(value=u256(due))", "_Payee(ZERO).emit_transfer(value=u256(due))"),
+    # money in
+    ("commit: any fee is accepted", "        if int(gl.message.value) != int(rd.entry_fee):", "        if int(gl.message.value) < 0:"),
+    ("commit: a fee above the entry fee is accepted", "        if int(gl.message.value) != int(rd.entry_fee):", "        if int(gl.message.value) < int(rd.entry_fee):"),
+    ("commit: two seals from one address", "        if key in self.entry_of:\n            raise", "        if False:\n            raise"),
+    ("commit: one past the maximum", "        if int(rd.entries) >= int(rd.max_entries):", "        if int(rd.entries) > int(rd.max_entries):"),
+    ("commit: sealing never closes", "        if now >= int(rd.seal_end):\n            raise gl.vm.UserError(E + \"sealing has closed", "        if False:\n            raise gl.vm.UserError(E + \"sealing has closed"),
+    ("commit: any text passes as a seal", '    if len(text) != 64 or any(ch not in HEX for ch in text):', "    if False:"),
+    ("create: no prize needed", '        if value <= 0:\n            raise gl.vm.UserError(E + "send the prize with the riddle")', '        if value < 0:\n            raise gl.vm.UserError(E + "send the prize with the riddle")'),
+    ("create: a free entry", "        if entry_fee <= 0:", "        if entry_fee < 0:"),
+    ("create: First N with no winners", "(winners_n < 1 or winners_n > max_entries)", "(winners_n < 0 or winners_n > max_entries)"),
+    ("create: more than 200 entries", "MAX_ENTRIES = 200", "MAX_ENTRIES = 201"),
+    ("create: a zero-hour seal window", "        if seal_hours < MIN_HOURS or seal_hours > MAX_SEAL_HOURS:", "        if seal_hours < 0 or seal_hours > MAX_SEAL_HOURS:"),
+    ("create: the riddle text is unbounded", "MAX_RIDDLE = 600", "MAX_RIDDLE = 6000"),
+    # the lock and the seals
+    ("host_reveal: the lock is not checked", "        if lock_of(text, body, key) != rd.lock:", "        if False:"),
+    ("host_reveal: early, while sealing is open", '        if now < int(rd.seal_end):\n            raise gl.vm.UserError(E + "the host reveals after', '        if False:\n            raise gl.vm.UserError(E + "the host reveals after'),
+    ("host_reveal: after the window", '        if now >= int(rd.reveal_end):\n            raise gl.vm.UserError(E + "the reveal window has ended")\n        text = str(answer if answer is not None else "")\n        body', '        if False:\n            raise gl.vm.UserError(E + "the reveal window has ended")\n        text = str(answer if answer is not None else "")\n        body'),
+    ("host_reveal: twice", '        if rd.host_revealed:\n            raise gl.vm.UserError(E + "the answer is already revealed")', '        if False:\n            raise gl.vm.UserError(E + "the answer is already revealed")'),
+    ("host_reveal: a bar may move the answer", '        if BAR in text:\n            raise gl.vm.UserError(E + "the answer cannot contain a bar, |")\n        if lock_of', '        if False:\n            raise gl.vm.UserError(E + "the answer cannot contain a bar, |")\n        if lock_of'),
+    ("host_reveal: an answer of any length", '        if text.strip() == "" or len(text) > MAX_ANSWER:', '        if text.strip() == "":'),
+    ("lock: the bar is dropped between fields", "(answer + BAR + notes + BAR + salt)", "(answer + notes + BAR + salt)"),
+    ("seal: the address is not hashed", "(answer + BAR + salt + BAR + address.lower())", "(answer + BAR + salt)"),
+    ("seal: the address keeps its case", "(answer + BAR + salt + BAR + address.lower())", "(answer + BAR + salt + BAR + address)"),
+    ("salt: any characters", "    if len(text) < MIN_SALT or len(text) > MAX_SALT or any(ch not in SALT_CHARS for ch in text):", "    if len(text) < MIN_SALT or len(text) > MAX_SALT:"),
+    ("reveal: the seal is not checked", "        if seal_of(text, secret, me.as_hex) != e.seal:", "        if False:"),
+    ("reveal: early, while sealing is open", '        if now < int(rd.seal_end):\n            raise gl.vm.UserError(E + "answers are revealed after', '        if False:\n            raise gl.vm.UserError(E + "answers are revealed after'),
+    ("reveal: after the window", '        if now >= int(rd.reveal_end):\n            raise gl.vm.UserError(E + "the reveal window has ended")\n        text = str(answer if answer is not None else "")\n        secret', '        if False:\n            raise gl.vm.UserError(E + "the reveal window has ended")\n        text = str(answer if answer is not None else "")\n        secret'),
+    ("reveal: twice", '        if e.status != SEALED:\n            raise gl.vm.UserError(E + "this answer is already revealed")', '        if False:\n            raise gl.vm.UserError(E + "this answer is already revealed")'),
+    ("reveal: the answer is not cut", "        e.answer = text[:MAX_ANSWER]", "        e.answer = text"),
+    ("reveal: the count is not kept", "        rd.revealed = u32(int(rd.revealed) + 1)\n", ""),
+    # judging
+    ("judge: before the reveal window ends", '        if now < int(rd.reveal_end):\n            raise gl.vm.UserError(E + "judging starts', '        if False:\n            raise gl.vm.UserError(E + "judging starts'),
+    ("judge: with no host answer", "        if not rd.host_revealed:", "        if False:"),
+    ("judge: a settled riddle is judged again", '        rd = self._riddle(riddle_id)\n        if rd.status != OPEN:\n            raise gl.vm.UserError(E + "this riddle is already " + rd.status.lower())\n        now = self._now()\n        if now < int(rd.reveal_end):\n            raise gl.vm.UserError(E + "judging', '        rd = self._riddle(riddle_id)\n        now = self._now()\n        if now < int(rd.reveal_end):\n            raise gl.vm.UserError(E + "judging'),
+    ("batch: eleven answers per call", "BATCH = 10", "BATCH = 11"),
+    ("batch: unopened seals are judged", "            if self._entry(riddle_id, number).status == REVEALED:", "            if self._entry(riddle_id, number).status in (REVEALED, SEALED):"),
+    ("batch: the last batch does not settle", '            self._settle(riddle_id, rd, now, gl.message.sender_address)\n            summary += ", settled"', '            summary += ", settled"'),
+    ("judge: validators agree with anything", "        return paid_set(mine) == paid_set(leader_labels)", "        return True"),
+    ("judge: validators compare every label", "        return paid_set(mine) == paid_set(leader_labels)", "        return mine == leader_labels"),
+    ("judge: the wrong label count is accepted", '    if len(parsed) != count:\n        raise gl.vm.UserError(L + "wrong number of labels")', '    if len(parsed) < count:\n        raise gl.vm.UserError(L + "wrong number of labels")'),
+    ("judge: an unknown label is accepted", '        if label not in LABELS:\n            raise gl.vm.UserError(L + "bad label")', ""),
+    ("judge: no retry on a formatting slip", "        if not error_text(first).startswith(L):\n            raise", "        raise"),
+    ("judge: an empty answer is sent to the model", '    asked = [index for index in range(len(answers)) if flat(answers[index]) != ""]', "    asked = list(range(len(answers)))"),
+    ("judge: the rank is not counted", "                e.rank = rd.correct\n", ""),
+    (
+        "judge: writes before the block runs",
+        "        labels = run_labels(rd.text, rd.answer, rd.notes, answers)\n",
+        "        rd.batches = u32(int(rd.batches) + 1)\n        labels = run_labels(rd.text, rd.answer, rd.notes, answers)\n",
+    ),
+    # the prompt
+    ("prompt: the fence lets delimiters through", '    return str(raw).replace("<", "(").replace(">", ")")', "    return str(raw)"),
+    ("prompt: the answers are not fenced", "entries=fence(numbered(answers))", "entries=numbered(answers)"),
+    ("prompt: the notes are not fenced", "notes=fence(notes)", "notes=notes"),
+    ("prompt: an answer may span lines", '"\\n".join(str(index + 1) + ": " + flat(answers[index])', '"\\n".join(str(index + 1) + ": " + str(answers[index])'),
+    # settlement
+    ("settle: First N pays every correct answer", "            if rd.mode == FIRST_N and int(rd.winners_n) < count:", "            if False:"),
+    ("settle: a correct answer past N is paid", "                if e.status == CORRECT and int(e.rank) <= count:", "                if e.status == CORRECT:"),
+    ("settle: a near miss is paid", "                if e.status == CORRECT and int(e.rank) <= count:", "                if e.status in (CORRECT, CLOSE) and int(e.rank) <= count:"),
+    ("settle: the fees stay out of the pot", "        pot = int(rd.prize) + fees", "        pot = int(rd.prize)"),
+    ("settle: the remainder is lost", "            self._credit(rd.host, dust)\n", ""),
+    ("settle: nobody correct keeps the fees", "                e.refund = u256(int(e.fee))\n                self._credit(e.player, int(e.fee))\n            rd.host_payout", "                e.refund = u256(int(e.fee))\n            rd.host_payout"),
+    ("settle: nobody correct keeps the prize", "            rd.host_payout = u256(int(rd.prize))\n            self._credit(rd.host, int(rd.prize))\n        rd.status = SETTLED", "            rd.host_payout = u256(int(rd.prize))\n        rd.status = SETTLED"),
+    ("settle: unopened seals stay sealed", "            if e.status == SEALED:\n                e.status = UNREVEALED", "            if False:\n                e.status = UNREVEALED"),
+    ("settle: the riddle stays open", "        rd.status = SETTLED\n", ""),
+    # void
+    ("void: before the reveal window ends", '        if now < int(rd.reveal_end):\n            raise gl.vm.UserError(E + "a riddle can be voided', '        if False:\n            raise gl.vm.UserError(E + "a riddle can be voided'),
+    ("void: a host who revealed is voided", '        if rd.host_revealed:\n            raise gl.vm.UserError(E + "the host revealed on time', '        if False:\n            raise gl.vm.UserError(E + "the host revealed on time'),
+    ("void: twice", '        rd = self._riddle(riddle_id)\n        if rd.status != OPEN:\n            raise gl.vm.UserError(E + "this riddle is already " + rd.status.lower())\n        now = self._now()\n        if now < int(rd.reveal_end):\n            raise gl.vm.UserError(E + "a riddle', '        rd = self._riddle(riddle_id)\n        now = self._now()\n        if now < int(rd.reveal_end):\n            raise gl.vm.UserError(E + "a riddle'),
+    ("void: fees are not refunded", "            e.refund = u256(int(e.fee))\n            self._credit(e.player, int(e.fee))\n            if e.status == REVEALED:", "            e.refund = u256(int(e.fee))\n            if e.status == REVEALED:"),
+    ("void: unopened players share the prize", "            if e.status == REVEALED:\n                cut = share + dust if first else share", "            if e.status in (REVEALED, SEALED):\n                cut = share + dust if first else share"),
+    ("void: the remainder is lost", "                cut = share + dust if first else share", "                cut = share"),
+    ("void: nobody revealed keeps the prize", "        if count == 0:\n            rd.host_payout = u256(int(rd.prize))\n            self._credit(rd.host, int(rd.prize))\n", ""),
+    ("void: the riddle stays open", "        rd.status = VOID\n", ""),
+    # claim
+    ("claim: the balance is paid twice", "        self.balances[key] = u256(0)\n", ""),
+    ("claim: nothing due still sends", '        if due <= 0:\n            raise gl.vm.UserError(E + "nothing to claim', '        if due < 0:\n            raise gl.vm.UserError(E + "nothing to claim'),
+    ("credit: balances keyed by case", "        key = account.as_hex.lower()\n        self.balances[key]", "        key = account.as_hex\n        self.balances[key]"),
+]

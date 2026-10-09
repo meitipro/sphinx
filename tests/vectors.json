@@ -1,0 +1,91 @@
+{
+  "about": "sha256 test vectors shared by contracts/sphinx.py (hashlib) and the site (web/lib/hash.mjs, SubtleCrypto). Locks hash UTF-8 'answer|notes|salt'; seals hash UTF-8 'answer|salt|address' with the address in lower case.",
+  "locks": [
+    {
+      "answer": "A keyboard",
+      "notes": "Any computer keyboard, in any language. A piano is close: keys, but no space or enter. Two guesses in one answer are wrong.",
+      "salt": "7f3a0c55-2b1e-4d1a-9b7c-e91c00000001",
+      "text": "A keyboard|Any computer keyboard, in any language. A piano is close: keys, but no space or enter. Two guesses in one answer are wrong.|7f3a0c55-2b1e-4d1a-9b7c-e91c00000001",
+      "lock": "ea32e50dd4eddb553f563882781a0c7b9164afe71525fae2087e1d2878ff5226"
+    },
+    {
+      "answer": "Optimistic Democracy",
+      "notes": "With or without the word consensus.",
+      "salt": "0b9e5a52-77c4-4f0e-8d0e-6b1fc09e0002",
+      "text": "Optimistic Democracy|With or without the word consensus.|0b9e5a52-77c4-4f0e-8d0e-6b1fc09e0002",
+      "lock": "3491d8aaed02d84730777070f4446648d9c5e1363ac9c7f303fb7a03cf0cf1da"
+    },
+    {
+      "answer": "12",
+      "notes": "All 12 months, any way of writing 12.\nFebruary is wrong.",
+      "salt": "salt-0003-ffff",
+      "text": "12|All 12 months, any way of writing 12.\nFebruary is wrong.|salt-0003-ffff",
+      "lock": "aef78d54c6ed84ad9221b93d46d2bbf237ff9ff8a39591094a01a3757cccbc8e"
+    },
+    {
+      "answer": "Tastatur",
+      "notes": "",
+      "salt": "abcdefgh",
+      "text": "Tastatur||abcdefgh",
+      "lock": "2a6e489a62d04f6f0176ebfb51725d5d549efaec8a231268f830502a011691a4"
+    },
+    {
+      "answer": "clavier d'ordinateur",
+      "notes": "notes may hold a | bar",
+      "salt": "ABCdef-123",
+      "text": "clavier d'ordinateur|notes may hold a | bar|ABCdef-123",
+      "lock": "7a7cf49d89e8f3b590db7fda9ecef9f9dd20d967fa2e7b83ee134dd0b0f26b5a"
+    },
+    {
+      "answer": "键盘",
+      "notes": "Ünïcödé notes: 🎹 is close",
+      "salt": "e91c-e91c-e91c",
+      "text": "键盘|Ünïcödé notes: 🎹 is close|e91c-e91c-e91c",
+      "lock": "4bb5a8e7302260e15d45428185a0f0d90186df703c23131c86c7efa1a106b77f"
+    }
+  ],
+  "seals": [
+    {
+      "answer": "keyboard",
+      "salt": "4f1d6a2c-9e8b-4c3a-b1d0-5e7f00000001",
+      "address": "0xa0c20000000000000000000000000000000077d1",
+      "text": "keyboard|4f1d6a2c-9e8b-4c3a-b1d0-5e7f00000001|0xa0c20000000000000000000000000000000077d1",
+      "seal": "02d20cc5619d10273074471e6784b0d298723c947fd867082f37eac29167c1da"
+    },
+    {
+      "answer": "a computer keybord",
+      "salt": "salt-12345678",
+      "address": "0x3e8B0000000000000000000000000000000041aA",
+      "text": "a computer keybord|salt-12345678|0x3e8b0000000000000000000000000000000041aa",
+      "seal": "e466a271a7b4ef01ce74541b6b2bc4315dc13be7848d4f2e717e34cb42e301b0"
+    },
+    {
+      "answer": "Tastatur",
+      "salt": "c0ffee00-c0ffee00",
+      "address": "0x0b7e000000000000000000000000000000000e41",
+      "text": "Tastatur|c0ffee00-c0ffee00|0x0b7e000000000000000000000000000000000e41",
+      "seal": "75da1fb0663786fafd7501e531fd3a6a316191fdec5b13779b7ee61484f4861c"
+    },
+    {
+      "answer": "",
+      "salt": "empty-answer-salt",
+      "address": "0x41f0000000000000000000000000000000000a2c",
+      "text": "|empty-answer-salt|0x41f0000000000000000000000000000000000a2c",
+      "seal": "1bc663d0ef75a9d05a0c522b4bab82d53617af99db0948a031aea9bf580f050a"
+    },
+    {
+      "answer": "  spaces kept  ",
+      "salt": "spacesalt",
+      "address": "0x9ce000000000000000000000000000000000010b",
+      "text": "  spaces kept  |spacesalt|0x9ce000000000000000000000000000000000010b",
+      "seal": "afa2441dc3b54e36db4591cd3e23ed4d7f1b2610b5c9eeab9806a408abf44e6d"
+    },
+    {
+      "answer": "Größe 🎹",
+      "salt": "unicode-salt",
+      "address": "0x77a000000000000000000000000000000000031F",
+      "text": "Größe 🎹|unicode-salt|0x77a000000000000000000000000000000000031f",
+      "seal": "7eaeafca194879db70ed09fc6c7813667d8cd5d24c166cc2b1f787d6e52304ec"
+    }
+  ]
+}
