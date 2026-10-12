@@ -60,7 +60,7 @@ Optional video link: record `submission/demo-script.md` and paste the link here.
 ## Prove the path works
 
 <!-- proof -->
-PROOF_PENDING
+Fresh wallets on the live site (run rp1, riddle 10): faucet paid 20 GEN each; 3 refusals stored as refusals (host plays, wrong fee, early host reveal); 2 seals, reveals, one judge: Spanish "una vela" CORRECT, "a matchstick" CLOSE. Winner claimed 11 GEN; all 3 wallets reconcile to 0 wei. Golden 11/11, held-out 3/3: sphinx-genlayer.vercel.app/docs/more/evaluation. Judge tx: https://explorer-studio-dev.genlayer.com/tx/0x58634e0891b9c4abf27d6e27b4442ea5c725cd725fc99459ca7fbc9629443156
 <!-- end -->
 
 - **Contract link:** https://explorer-studio-dev.genlayer.com/address/0x864906361b22e044d363083cad710366E8AfECD1

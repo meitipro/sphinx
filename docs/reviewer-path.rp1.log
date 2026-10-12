@@ -15,3 +15,29 @@
     https://explorer-studio-dev.genlayer.com/tx/0x905f79cc37f8cc59502fcfe6b569cd8a377a570a5194da323e7eec423ea8fd2c
   waiting 59 min 37 s for sealing to close
   waiting 54 min 37 s for sealing to close
+  waiting 49 min 37 s for sealing to close
+  waiting 44 min 37 s for sealing to close
+  waiting 39 min 37 s for sealing to close
+  waiting 34 min 37 s for sealing to close
+  waiting 29 min 37 s for sealing to close
+  waiting 24 min 37 s for sealing to close
+  waiting 19 min 37 s for sealing to close
+  waiting 14 min 37 s for sealing to close
+  waiting 9 min 37 s for sealing to close
+  waiting 4 min 37 s for sealing to close
+  host-reveal: host_reveal ok -> "1871b4247d0263c8555ba996c99a7b34423c40a3d735163c766a9d9a5bc02fca"
+    https://explorer-studio-dev.genlayer.com/tx/0x3737e7562f60c6f6a7d6d356d33be9fece030323249ff1470d460742ae945db2
+  reveal-alice: reveal ok -> "711202c6636b1276a2a719c22e343155c8dca08c1e5085445f60d12aeff581f8"
+    https://explorer-studio-dev.genlayer.com/tx/0xcb5d17abe1d5f9d0da781e90ffb44a7a48259ad4c1b223472c1ce935fa8d7caa
+  reveal-bob: reveal ok -> "663d1fe2503c13e7a2f2a1aca325b51b9c31fcb13949c3058f6517d11f9687cd"
+    https://explorer-studio-dev.genlayer.com/tx/0xb01523ed2fa25eae11e66024e8b19dc4db39c2ce6d9afc500fa8c95e8a57f312
+  waiting 59 min 28 s for the reveal window to end
+  waiting 54 min 28 s for the reveal window to end
+  judge-1: judge ok -> "batch 1: 2 labelled, 1 correct, settled"
+    https://explorer-studio-dev.genlayer.com/tx/0x58634e0891b9c4abf27d6e27b4442ea5c725cd725fc99459ca7fbc9629443156
+  claim-alice: claim ok -> 11000000000000000000
+    https://explorer-studio-dev.genlayer.com/tx/0x77dd7cde125d3a0076824569ec19b1b27c951621dd19887a3379c952164ea767
+  host: expected 9.999685480499988 GEN, balance 9.999685480499988 GEN, difference 0 wei
+  alice: expected 30.49963780124999 GEN, balance 30.49963780124999 GEN, difference 0 wei
+  bob: expected 19.499764004999992 GEN, balance 19.499764004999992 GEN, difference 0 wei
+done: riddle 10, https://sphinx-genlayer.vercel.app/r/10

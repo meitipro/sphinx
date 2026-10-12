@@ -19,4 +19,4 @@ What only the owner can do, or what has to wait for a date. Everything else is d
 
 The contract is frozen at `0x864906361b22e044d363083cad710366E8AfECD1`; do not redeploy without deciding to.
 The Vercel project `sphinx-genlayer` is CLI-linked from `web/` and not Git-connected: redeploy from `web/` with
-`npx vercel@latest deploy --prod --scope mahdighs-projects`.
+`npx vercel@latest deploy --prod` (the `--scope` flag was refused as "Not authorized" on 2026-10-12; without it the linked project deploys).

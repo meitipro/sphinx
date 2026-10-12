@@ -123,10 +123,217 @@
           "refusal": null,
           "expected": "success",
           "seconds": 8
+        },
+        {
+          "key": "host-reveal",
+          "method": "host_reveal",
+          "from": "0xdb84CE91d5D9E59cef5eC2B8163ADe03FdC2c49b",
+          "hash": "0x3737e7562f60c6f6a7d6d356d33be9fece030323249ff1470d460742ae945db2",
+          "value": "0",
+          "sent_at": "2026-10-09T23:34:41.179Z",
+          "ok": true,
+          "status": "ACCEPTED",
+          "returned": "1871b4247d0263c8555ba996c99a7b34423c40a3d735163c766a9d9a5bc02fca",
+          "refusal": null,
+          "expected": "success",
+          "seconds": 10
+        },
+        {
+          "key": "reveal-alice",
+          "method": "reveal",
+          "from": "0xF0913d0df56eEe6Ac6Cd67a5c375B335e96B946b",
+          "hash": "0xcb5d17abe1d5f9d0da781e90ffb44a7a48259ad4c1b223472c1ce935fa8d7caa",
+          "value": "0",
+          "sent_at": "2026-10-09T23:34:49.860Z",
+          "ok": true,
+          "status": "ACCEPTED",
+          "returned": "711202c6636b1276a2a719c22e343155c8dca08c1e5085445f60d12aeff581f8",
+          "refusal": null,
+          "expected": "success",
+          "seconds": 9
+        },
+        {
+          "key": "reveal-bob",
+          "method": "reveal",
+          "from": "0x862e1605D14510fFb9f0C27D960CF814e2aba839",
+          "hash": "0xb01523ed2fa25eae11e66024e8b19dc4db39c2ce6d9afc500fa8c95e8a57f312",
+          "value": "0",
+          "sent_at": "2026-10-09T23:34:57.837Z",
+          "ok": true,
+          "status": "ACCEPTED",
+          "returned": "663d1fe2503c13e7a2f2a1aca325b51b9c31fcb13949c3058f6517d11f9687cd",
+          "refusal": null,
+          "expected": "success",
+          "seconds": 13
+        },
+        {
+          "key": "judge-1",
+          "method": "judge",
+          "from": "0x862e1605D14510fFb9f0C27D960CF814e2aba839",
+          "hash": "0x58634e0891b9c4abf27d6e27b4442ea5c725cd725fc99459ca7fbc9629443156",
+          "value": "0",
+          "sent_at": "2026-10-12T02:53:50.294Z",
+          "ok": true,
+          "status": "ACCEPTED",
+          "returned": "batch 1: 2 labelled, 1 correct, settled",
+          "refusal": null,
+          "expected": "success",
+          "seconds": 13
+        },
+        {
+          "key": "claim-alice",
+          "method": "claim",
+          "from": "0xF0913d0df56eEe6Ac6Cd67a5c375B335e96B946b",
+          "hash": "0x77dd7cde125d3a0076824569ec19b1b27c951621dd19887a3379c952164ea767",
+          "value": "0",
+          "sent_at": "2026-10-12T02:54:06.865Z",
+          "ok": true,
+          "status": "ACCEPTED",
+          "returned": 11000000000000000000,
+          "refusal": null,
+          "expected": "success",
+          "seconds": 8,
+          "final_status": "FINALIZED",
+          "paid_by_contract": "11000000000000000000"
+        },
+        {
+          "key": "claim-bob",
+          "method": "claim",
+          "skipped": "nothing credited",
+          "at": "2026-10-12T02:54:48.702Z"
+        },
+        {
+          "key": "claim-host",
+          "method": "claim",
+          "skipped": "nothing credited",
+          "at": "2026-10-12T02:54:49.517Z"
         }
       ],
       "secrets_local": true,
-      "riddle_id": 10
+      "riddle_id": 10,
+      "labels": {
+        "0xF0913d0df56eEe6Ac6Cd67a5c375B335e96B946b": {
+          "answer": "una vela",
+          "status": "CORRECT",
+          "rank": 1,
+          "payout": "11000000000000000000",
+          "refund": "0"
+        },
+        "0x862e1605D14510fFb9f0C27D960CF814e2aba839": {
+          "answer": "a matchstick",
+          "status": "CLOSE",
+          "rank": 0,
+          "payout": "0",
+          "refund": "0"
+        }
+      },
+      "reconciliation": {
+        "at": "2026-10-12T02:56:26.783Z",
+        "accounts": {
+          "host": {
+            "address": "0xdb84CE91d5D9E59cef5eC2B8163ADe03FdC2c49b",
+            "expected": "9999685480499988708",
+            "balance": "9999685480499988708",
+            "difference": "0",
+            "transactions": [
+              {
+                "key": "create",
+                "value": "10000000000000000000",
+                "fee_net": "78633500002823",
+                "fee_status": "settled"
+              },
+              {
+                "key": "host-plays",
+                "value": "0",
+                "fee_net": "78628000002823",
+                "fee_status": "settled"
+              },
+              {
+                "key": "early-host-reveal",
+                "value": "0",
+                "fee_net": "78628000002823",
+                "fee_status": "settled"
+              },
+              {
+                "key": "host-reveal",
+                "value": "0",
+                "fee_net": "78630000002823",
+                "fee_status": "settled"
+              }
+            ]
+          },
+          "alice": {
+            "address": "0xF0913d0df56eEe6Ac6Cd67a5c375B335e96B946b",
+            "expected": "30499637801249988708",
+            "balance": "30499637801249988708",
+            "difference": "0",
+            "transactions": [
+              {
+                "key": "wrong-fee",
+                "value": "0",
+                "fee_net": "78628000002823",
+                "fee_status": "settled"
+              },
+              {
+                "key": "seal-alice",
+                "value": "500000000000000000",
+                "fee_net": "78635500002823",
+                "fee_status": "settled"
+              },
+              {
+                "key": "reveal-alice",
+                "value": "0",
+                "fee_net": "78629250002823",
+                "fee_status": "settled"
+              },
+              {
+                "key": "claim-alice",
+                "value": "0",
+                "fee_net": "126306000002823",
+                "fee_status": "settled"
+              }
+            ]
+          },
+          "bob": {
+            "address": "0x862e1605D14510fFb9f0C27D960CF814e2aba839",
+            "expected": "19499764004999991531",
+            "balance": "19499764004999991531",
+            "difference": "0",
+            "transactions": [
+              {
+                "key": "seal-bob",
+                "value": "500000000000000000",
+                "fee_net": "78636000002823",
+                "fee_status": "settled"
+              },
+              {
+                "key": "reveal-bob",
+                "value": "0",
+                "fee_net": "78629000002823",
+                "fee_status": "settled"
+              },
+              {
+                "key": "judge-1",
+                "value": "0",
+                "fee_net": "78730000002823",
+                "fee_status": "settled"
+              }
+            ]
+          }
+        }
+      },
+      "revealed_tickets": {
+        "host_salt": "0e6d052f-70c4-4016-b92f-744748dcb245",
+        "alice": {
+          "answer": "una vela",
+          "salt": "12eb6acd-8e9d-486a-a4de-81f178c39776"
+        },
+        "bob": {
+          "answer": "a matchstick",
+          "salt": "715b01b2-c6f1-4714-ae8c-f6ba383e2e7b"
+        }
+      },
+      "finished_at": "2026-10-12T02:56:26.783Z"
     }
   }
 }
